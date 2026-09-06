@@ -44,7 +44,7 @@
       <li><a href="../index.html">Home</a></li>
       <li><a href="../projects/index.html" aria-current="page">Projects</a></li>
       <li><a href="../about.html">About</a></li>
-      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../contact.html">Contact</a></li><li><a href="../assets/resume.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a></li>
     </ul>
     <div class="nav__actions">
       <div class="palette-switcher" data-palette-switcher role="group" aria-label="Accent color palette">
@@ -60,6 +60,15 @@
     </div>
   </div>
 </header>
+
+<nav class="page-toc" aria-label="On this page">
+  <div class="page-toc__inner">
+    <a href="#p-title">Overview</a>
+    <a href="#case-study">Case study</a>
+    <a href="#stack">Stack</a>
+  </div>
+</nav>
+
 
 <main id="main">
   <section class="section project-hero" data-signal-marker aria-labelledby="p-title">
@@ -90,7 +99,7 @@
         <span class="mini-chart__metric is-illustrative center" style="display:block">predicted vs. actual</span>
       </div>
 
-      <div class="pbp-grid">
+      <div class="pbp-grid" id="case-study">
         <div class="pbp-card">
           <span class="pbp-card__label">Problem</span>
           <p>Attaching demographic classification to raw video/image feeds requires two distinct steps — finding people, then classifying each one — that most tutorials skip past.</p>
@@ -103,11 +112,15 @@
           <span class="pbp-card__label">Result</span>
           <p>A live-inference frontend that draws boxes and gender labels over uploaded images or webcam frames in real time.</p>
         </div>
+        <div class="pbp-card pbp-card--retro">
+          <span class="pbp-card__label">What I'd do differently</span>
+          <p>Retrain the classifier on a more demographically balanced dataset — the source data skews toward a narrower age and ethnicity range than the real-world traffic it would see.</p>
+        </div>
       </div>
 
       <div class="section-head">
         <span class="section-head__index" aria-hidden="true">// stack</span>
-        <h2>Layer breakdown</h2>
+        <h2 id="stack">Layer breakdown</h2>
       </div>
       <div class="table-scroll"><table class="data-table">
         <thead><tr><th scope="col">Layer</th><th scope="col">Technology</th></tr></thead>

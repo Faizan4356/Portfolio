@@ -44,7 +44,7 @@
       <li><a href="../index.html">Home</a></li>
       <li><a href="../projects/index.html" aria-current="page">Projects</a></li>
       <li><a href="../about.html">About</a></li>
-      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../contact.html">Contact</a></li><li><a href="../assets/resume.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a></li>
     </ul>
     <div class="nav__actions">
       <div class="palette-switcher" data-palette-switcher role="group" aria-label="Accent color palette">
@@ -60,6 +60,15 @@
     </div>
   </div>
 </header>
+
+<nav class="page-toc" aria-label="On this page">
+  <div class="page-toc__inner">
+    <a href="#p-title">Overview</a>
+    <a href="#case-study">Case study</a>
+    <a href="#stack">Stack</a>
+  </div>
+</nav>
+
 
 <main id="main">
   <section class="section project-hero" data-signal-marker aria-labelledby="p-title">
@@ -85,7 +94,7 @@
         <p class="text-muted mono" style="margin-top:1rem;font-size:.8rem">image → gaussian/ply → glb</p>
       </div>
 
-      <div class="pbp-grid">
+      <div class="pbp-grid" id="case-study">
         <div class="pbp-card">
           <span class="pbp-card__label">Problem</span>
           <p>Virtual try-on demos usually stop at a flat 2D composite — there's no easy path from that image to something viewable as a 3D asset in a browser.</p>
@@ -98,11 +107,15 @@
           <span class="pbp-card__label">Result</span>
           <p>A React + Vite flow — upload, preview, generate, view — that produces a downloadable 3D avatar with no local GPU or model weights required in the default cloud-backed mode.</p>
         </div>
+        <div class="pbp-card pbp-card--retro">
+          <span class="pbp-card__label">What I'd do differently</span>
+          <p>Add a local fallback path for the 3D conversion step — the pipeline is currently fully dependent on the third-party Hi3D API being reachable, with no offline degradation.</p>
+        </div>
       </div>
 
       <div class="section-head">
         <span class="section-head__index" aria-hidden="true">// stack</span>
-        <h2>Layer breakdown</h2>
+        <h2 id="stack">Layer breakdown</h2>
       </div>
       <div class="table-scroll"><table class="data-table">
         <thead><tr><th scope="col">Layer</th><th scope="col">Technology</th></tr></thead>

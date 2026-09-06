@@ -45,7 +45,7 @@
       <li><a href="../index.html">Home</a></li>
       <li><a href="../projects/index.html" aria-current="page">Projects</a></li>
       <li><a href="../about.html">About</a></li>
-      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../contact.html">Contact</a></li><li><a href="../assets/resume.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a></li>
     </ul>
     <div class="nav__actions">
       <div class="palette-switcher" data-palette-switcher role="group" aria-label="Accent color palette">
@@ -61,6 +61,15 @@
     </div>
   </div>
 </header>
+
+<nav class="page-toc" aria-label="On this page">
+  <div class="page-toc__inner">
+    <a href="#p-title">Overview</a>
+    <a href="#case-study">Case study</a>
+    <a href="#stack">Stack</a>
+  </div>
+</nav>
+
 
 <main id="main">
   <section class="section project-hero" data-signal-marker aria-labelledby="p-title">
@@ -91,7 +100,7 @@
         <span class="mini-chart__metric is-illustrative center" style="display:block">precision · recall shape</span>
       </div>
 
-      <div class="pbp-grid">
+      <div class="pbp-grid" id="case-study">
         <div class="pbp-card">
           <span class="pbp-card__label">Problem</span>
           <p>Manually reviewing surveillance footage for smoking violations in restricted areas doesn't scale, and generic object detectors aren't trained to recognize a lit cigarette or the act of smoking specifically.</p>
@@ -104,11 +113,15 @@
           <span class="pbp-card__label">Result</span>
           <p>A deployed REST API plus dashboard that flags smoking events in uploaded images and video in real time, usable as a drop-in moderation or compliance signal.</p>
         </div>
+        <div class="pbp-card pbp-card--retro">
+          <span class="pbp-card__label">What I'd do differently</span>
+          <p>Add hard-negative mining for ambiguous cases — vaping, an unlit cigarette held near the mouth — since the model was trained on a fairly narrow custom set and likely overfits to it.</p>
+        </div>
       </div>
 
       <div class="section-head">
         <span class="section-head__index" aria-hidden="true">// stack</span>
-        <h2>Layer breakdown</h2>
+        <h2 id="stack">Layer breakdown</h2>
       </div>
       <div class="table-scroll"><table class="data-table">
         <thead><tr><th scope="col">Layer</th><th scope="col">Technology</th></tr></thead>

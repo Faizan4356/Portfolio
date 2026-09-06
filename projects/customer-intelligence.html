@@ -45,7 +45,7 @@
       <li><a href="../index.html">Home</a></li>
       <li><a href="../projects/index.html" aria-current="page">Projects</a></li>
       <li><a href="../about.html">About</a></li>
-      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../contact.html">Contact</a></li><li><a href="../assets/resume.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a></li>
     </ul>
     <div class="nav__actions">
       <div class="palette-switcher" data-palette-switcher role="group" aria-label="Accent color palette">
@@ -61,6 +61,15 @@
     </div>
   </div>
 </header>
+
+<nav class="page-toc" aria-label="On this page">
+  <div class="page-toc__inner">
+    <a href="#p-title">Overview</a>
+    <a href="#case-study">Case study</a>
+    <a href="#stack">Stack</a>
+  </div>
+</nav>
+
 
 <main id="main">
   <section class="section project-hero" data-signal-marker aria-labelledby="p-title">
@@ -89,7 +98,7 @@
         <span class="mini-chart__metric center" style="display:block">AUC <strong>0.839</strong> · optimized for recall on churn class</span>
       </div>
 
-      <div class="pbp-grid">
+      <div class="pbp-grid" id="case-study">
         <div class="pbp-card">
           <span class="pbp-card__label">Problem</span>
           <p>A single churn probability doesn't tell a customer success team *why* an account is at risk, or what's changed recently in behavior and sentiment.</p>
@@ -102,11 +111,15 @@
           <span class="pbp-card__label">Result</span>
           <p>A 4-tab Streamlit app (Single Prediction, Search Existing Customer, What-If Simulator, Batch Upload) that's explicit about which parts are real data (churn) vs. synthetic-but-correlated (usage/sentiment).</p>
         </div>
+        <div class="pbp-card pbp-card--retro">
+          <span class="pbp-card__label">What I'd do differently</span>
+          <p>Give the LSTM usage-trend model a proper held-out time window instead of a random split — usage data is inherently sequential, and a random split lets future information leak into training.</p>
+        </div>
       </div>
 
       <div class="section-head">
         <span class="section-head__index" aria-hidden="true">// stack</span>
-        <h2>Layer breakdown</h2>
+        <h2 id="stack">Layer breakdown</h2>
       </div>
       <div class="table-scroll"><table class="data-table">
         <thead><tr><th scope="col">Layer</th><th scope="col">Technology</th></tr></thead>
