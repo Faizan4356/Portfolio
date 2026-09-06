@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://faizan4356.github.io/portfolio/index.html</loc><priority>1.0</priority></url>
-  <url><loc>https://faizan4356.github.io/portfolio/about.html</loc><priority>0.8</priority></url>
-  <url><loc>https://faizan4356.github.io/portfolio/contact.html</loc><priority>0.6</priority></url>
-  <url><loc>https://faizan4356.github.io/portfolio/projects/index.html</loc><priority>0.9</priority></url>
-  <url><loc>https://faizan4356.github.io/portfolio/projects/smokeguard.html</loc><priority>0.7</priority></url>
-  <url><loc>https://faizan4356.github.io/portfolio/projects/ai-data-analyst.html</loc><priority>0.7</priority></url>
-  <url><loc>https://faizan4356.github.io/portfolio/projects/gender-classification.html</loc><priority>0.7</priority></url>
-  <url><loc>https://faizan4356.github.io/portfolio/projects/3d-styleforge.html</loc><priority>0.7</priority></url>
-  <url><loc>https://faizan4356.github.io/portfolio/projects/excel-dashboard.html</loc><priority>0.7</priority></url>
-  <url><loc>https://faizan4356.github.io/portfolio/projects/customer-intelligence.html</loc><priority>0.7</priority></url>
-  <url><loc>https://faizan4356.github.io/portfolio/projects/pk-job-tracker.html</loc><priority>0.7</priority></url>
-  <url><loc>https://faizan4356.github.io/portfolio/projects/sales-forecasting.html</loc><priority>0.7</priority></url>
+  <url><loc>https://faizan4356.github.io/Portfolio/index.html</loc><priority>1.0</priority></url>
+  <url><loc>https://faizan4356.github.io/Portfolio/about.html</loc><priority>0.8</priority></url>
+  <url><loc>https://faizan4356.github.io/Portfolio/contact.html</loc><priority>0.6</priority></url>
+  <url><loc>https://faizan4356.github.io/Portfolio/projects/index.html</loc><priority>0.9</priority></url>
+  <url><loc>https://faizan4356.github.io/Portfolio/projects/smokeguard.html</loc><priority>0.7</priority></url>
+  <url><loc>https://faizan4356.github.io/Portfolio/projects/ai-data-analyst.html</loc><priority>0.7</priority></url>
+  <url><loc>https://faizan4356.github.io/Portfolio/projects/gender-classification.html</loc><priority>0.7</priority></url>
+  <url><loc>https://faizan4356.github.io/Portfolio/projects/3d-styleforge.html</loc><priority>0.7</priority></url>
+  <url><loc>https://faizan4356.github.io/Portfolio/projects/excel-dashboard.html</loc><priority>0.7</priority></url>
+  <url><loc>https://faizan4356.github.io/Portfolio/projects/customer-intelligence.html</loc><priority>0.7</priority></url>
+  <url><loc>https://faizan4356.github.io/Portfolio/projects/pk-job-tracker.html</loc><priority>0.7</priority></url>
+  <url><loc>https://faizan4356.github.io/Portfolio/projects/sales-forecasting.html</loc><priority>0.7</priority></url>
 </urlset>
