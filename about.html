@@ -60,6 +60,15 @@
   </div>
 </header>
 
+<nav class="page-toc" aria-label="On this page">
+  <div class="page-toc__inner">
+    <a href="#about-title">Bio</a>
+    <a href="#skills-title">Skills</a>
+    <a href="#metrics-title">Metrics</a>
+    <a href="#education-title">Education</a>
+  </div>
+</nav>
+
 <main id="main">
 
   <section class="section" style="padding-top:var(--space-5)" data-signal-marker aria-labelledby="about-title">
@@ -115,7 +124,7 @@
   <section class="section" data-signal-marker aria-labelledby="skills-title">
     <div class="wrap">
       <div class="section-head">
-        <span class="section-head__index">// 01</span>
+        <span class="section-head__index" aria-hidden="true">// 01</span>
         <h2 id="skills-title">Skills</h2>
         <p>Self-assessed proficiency across the disciplines I work across most.</p>
       </div>
@@ -173,7 +182,7 @@
   <section class="section" data-signal-marker aria-labelledby="metrics-title">
     <div class="wrap">
       <div class="section-head">
-        <span class="section-head__index">// 02</span>
+        <span class="section-head__index" aria-hidden="true">// 02</span>
         <h2 id="metrics-title">Metrics that matter</h2>
         <p>A quick look at the numbers behind the work — churn model AUC, SmokeGuard detection quality, and shipped output.</p>
       </div>
@@ -184,7 +193,7 @@
   <section class="section" data-signal-marker aria-labelledby="education-title">
     <div class="wrap">
       <div class="section-head">
-        <span class="section-head__index">// 03</span>
+        <span class="section-head__index" aria-hidden="true">// 03</span>
         <h2 id="education-title">Education &amp; certifications</h2>
       </div>
 
@@ -212,7 +221,7 @@
         </svg>
       </div>
 
-      <table class="data-table">
+      <div class="table-scroll"><table class="data-table">
         <thead><tr><th scope="col">Certificate</th><th scope="col">Issuer</th><th scope="col">Skills covered</th></tr></thead>
         <tbody>
           <tr><td>Data Analytics Job Simulation</td><td>Deloitte</td><td class="mono">Data analysis, forensic technology</td></tr>
@@ -220,7 +229,7 @@
           <tr><td>Data Science Job Simulation</td><td>BCG X</td><td class="mono">EDA, feature engineering, modeling</td></tr>
           <tr><td>GenAI Powered Data Analytics Job Simulation</td><td>Tata</td><td class="mono">Risk profiling, delinquency prediction</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </section>
 

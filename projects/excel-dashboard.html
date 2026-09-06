@@ -72,14 +72,18 @@
       </div>
 
       <div class="project-shot center">
-        <div class="sig-icon" data-reveal style="width:180px;height:180px;margin:0 auto;color:var(--accent)" role="img" aria-label="Spreadsheet-to-chart icon representing client-side dashboard generation">
-          <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="12" y="16" width="96" height="70" rx="4"/>
-            <path d="M12 40h96M40 16v70M76 16v70"/>
-            <path d="M22 74l10-14 10 8 12-22" opacity="0.8"/>
+        <!-- illustrative category-breakdown bars: generic shape, no specific
+             per-category figures are reported in the README -->
+        <div class="sig-icon" data-reveal style="width:180px;height:180px;margin:0 auto;color:var(--accent)" role="img" aria-label="Illustrative category-breakdown bar chart">
+          <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+            <line x1="10" y1="108" x2="110" y2="108"/>
+            <rect class="mini-chart__bar" x="20" y="66" width="16" height="42" fill="currentColor" stroke="none"/>
+            <rect class="mini-chart__bar" x="44" y="38" width="16" height="70" fill="currentColor" stroke="none" style="transition-delay:100ms"/>
+            <rect class="mini-chart__bar" x="68" y="54" width="16" height="54" fill="currentColor" stroke="none" style="transition-delay:200ms"/>
+            <rect class="mini-chart__bar" x="92" y="26" width="16" height="82" fill="currentColor" stroke="none" style="transition-delay:300ms"/>
           </svg>
         </div>
-        <p class="text-muted mono" style="margin-top:1rem;font-size:.8rem">.xlsx → parsed in-browser → charts</p>
+        <span class="mini-chart__metric is-illustrative center" style="display:block">category breakdown</span>
       </div>
 
       <div class="pbp-grid">
@@ -98,17 +102,17 @@
       </div>
 
       <div class="section-head">
-        <span class="section-head__index">// stack</span>
+        <span class="section-head__index" aria-hidden="true">// stack</span>
         <h2>Layer breakdown</h2>
       </div>
-      <table class="data-table">
+      <div class="table-scroll"><table class="data-table">
         <thead><tr><th scope="col">Layer</th><th scope="col">Technology</th></tr></thead>
         <tbody>
           <tr><td>Frontend</td><td class="mono">React, Vite, TypeScript, Tailwind CSS v4</td></tr>
           <tr><td>Parsing</td><td class="mono">SheetJS (xlsx), fully client-side</td></tr>
           <tr><td>Charts</td><td class="mono">Chart.js (react-chartjs-2)</td></tr>
         </tbody>
-      </table>
+      </table></div>
 
       <nav class="project-nav" aria-label="Project navigation">
         <a href="3d-styleforge.html">← 3D-StyleForge</a>

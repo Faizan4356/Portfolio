@@ -70,14 +70,18 @@
       </div>
 
       <div class="project-shot center">
-        <div class="sig-icon" data-reveal style="width:180px;height:180px;margin:0 auto;color:var(--accent)" role="img" aria-label="Person silhouette with a detection box, representing person detection and classification">
-          <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="60" cy="34" r="16"/>
-            <path d="M28 96c3-22 16-32 32-32s29 10 32 32"/>
-            <rect x="14" y="10" width="92" height="98" rx="4" opacity="0.3"/>
+        <!-- illustrative confusion-matrix shape: no reported per-class accuracy
+             numbers in the README, so diagonal cells are only highlighted
+             directionally (correct-prediction concept), no numeral shown -->
+        <div class="sig-icon" data-reveal style="width:180px;height:180px;margin:0 auto;color:var(--accent)" role="img" aria-label="Illustrative confusion-matrix grid for the male/female classifier">
+          <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2">
+            <rect class="mini-chart__cell is-strong" x="10" y="10" width="47" height="47"/>
+            <rect class="mini-chart__cell" x="63" y="10" width="47" height="47"/>
+            <rect class="mini-chart__cell" x="10" y="63" width="47" height="47"/>
+            <rect class="mini-chart__cell is-strong" x="63" y="63" width="47" height="47"/>
           </svg>
         </div>
-        <p class="text-muted mono" style="margin-top:1rem;font-size:.8rem">detect → crop → classify: male / female</p>
+        <span class="mini-chart__metric is-illustrative center" style="display:block">predicted vs. actual</span>
       </div>
 
       <div class="pbp-grid">
@@ -96,10 +100,10 @@
       </div>
 
       <div class="section-head">
-        <span class="section-head__index">// stack</span>
+        <span class="section-head__index" aria-hidden="true">// stack</span>
         <h2>Layer breakdown</h2>
       </div>
-      <table class="data-table">
+      <div class="table-scroll"><table class="data-table">
         <thead><tr><th scope="col">Layer</th><th scope="col">Technology</th></tr></thead>
         <tbody>
           <tr><td>Detection Model</td><td class="mono">YOLOv8 (Ultralytics), PyTorch</td></tr>
@@ -107,7 +111,7 @@
           <tr><td>Frontend</td><td class="mono">Streamlit</td></tr>
           <tr><td>Image Processing</td><td class="mono">OpenCV, Pillow</td></tr>
         </tbody>
-      </table>
+      </table></div>
 
       <nav class="project-nav" aria-label="Project navigation">
         <a href="ai-data-analyst.html">← AI-Powered Data Analyst</a>

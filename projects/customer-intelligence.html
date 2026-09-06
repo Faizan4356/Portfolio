@@ -72,13 +72,15 @@
       </div>
 
       <div class="project-shot center">
-        <div class="sig-icon" data-reveal style="width:220px;height:120px;margin:0 auto;color:var(--accent)" role="img" aria-label="Churn-curve sparkline showing customer health trending downward then recovering">
-          <svg viewBox="0 0 220 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6,30 40,42 74,66 108,94 142,80 176,48 214,20"/>
-            <circle cx="108" cy="94" r="5" fill="currentColor" stroke="none"/>
+        <!-- real metric: churn model AUC 0.839, gauge fill animates to that
+             exact fraction of the ring (see churn-prediction-app README) -->
+        <div class="sig-icon" data-reveal style="width:180px;height:180px;margin:0 auto;color:var(--accent)" role="img" aria-label="Radial gauge showing the churn model's AUC of 0.839">
+          <svg viewBox="0 0 120 120" style="transform:rotate(-90deg)">
+            <circle class="mini-chart__gauge-track" cx="60" cy="60" r="44"/>
+            <circle class="mini-chart__gauge-fill gauge--auc839 mini-chart__gauge-fill--r44" cx="60" cy="60" r="44"/>
           </svg>
         </div>
-        <p class="text-muted mono" style="margin-top:1rem;font-size:.8rem">AUC 0.839 · optimized for recall on churn class</p>
+        <span class="mini-chart__metric center" style="display:block">AUC <strong>0.839</strong> · optimized for recall on churn class</span>
       </div>
 
       <div class="pbp-grid">
@@ -97,10 +99,10 @@
       </div>
 
       <div class="section-head">
-        <span class="section-head__index">// stack</span>
+        <span class="section-head__index" aria-hidden="true">// stack</span>
         <h2>Layer breakdown</h2>
       </div>
-      <table class="data-table">
+      <div class="table-scroll"><table class="data-table">
         <thead><tr><th scope="col">Layer</th><th scope="col">Technology</th></tr></thead>
         <tbody>
           <tr><td>ML</td><td class="mono">scikit-learn, XGBoost (AUC 0.839, real Telco data)</td></tr>
@@ -109,7 +111,7 @@
           <tr><td>Interpretation</td><td class="mono">SHAP</td></tr>
           <tr><td>App</td><td class="mono">Streamlit</td></tr>
         </tbody>
-      </table>
+      </table></div>
 
       <nav class="project-nav" aria-label="Project navigation">
         <a href="excel-dashboard.html">← Excel-to-Dashboard</a>
