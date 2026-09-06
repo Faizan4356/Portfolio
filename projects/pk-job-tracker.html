@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PK Govt Job Tracker — Muhammad Faizan</title>
+<meta name="description" content="Scrapes Pakistani government job listings (FPSC, PPSC), extracts eligibility requirements from PDF ads via Gemini, and shows every open job grouped by degree level.">
+<link rel="canonical" href="https://faizan4356.github.io/portfolio/projects/pk-job-tracker.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PK Govt Job Tracker — Muhammad Faizan">
+<meta property="og:description" content="Scrapes FPSC/PPSC job listings and extracts eligibility from PDF ads via Gemini, grouped by degree level.">
+<meta property="og:image" content="https://faizan4356.github.io/portfolio/assets/img/headshot.jpg">
+<meta property="og:url" content="https://faizan4356.github.io/portfolio/projects/pk-job-tracker.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<script>(function(){try{var t=localStorage.getItem('faizan-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PK Govt Job Tracker",
+  "applicationCategory": "Data Engineering / NLP",
+  "author": { "@type": "Person", "name": "Muhammad Faizan" },
+  "codeRepository": "https://github.com/Faizan4356/pk-job-tracker",
+  "url": "https://pk-job-tracker-xgbxf6amw5icfxszctem8q.streamlit.app/",
+  "description": "Scrapes Pakistani government job listings, extracts eligibility requirements from PDF advertisements via Gemini vision, and groups every open job by degree level."
+}
+</script>
+</head>
+<body class="grid-bg">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="signal-line" data-signal-line aria-hidden="true"><div class="signal-line__fill"></div></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html"><span class="brand__dot" aria-hidden="true"></span>FAIZAN.DS</a>
+    <button class="nav__burger" data-nav-burger aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="nav-links" data-nav-links>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../projects/index.html" aria-current="page">Projects</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__actions">
+      <button class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section project-hero" data-signal-marker aria-labelledby="p-title">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="../projects/index.html">Projects</a> / PK Govt Job Tracker</p>
+      <p class="eyebrow">NLP · Web Scraping</p>
+      <h1 id="p-title" style="font-size:clamp(2rem,4.5vw,3.2rem)">PK Govt Job Tracker</h1>
+      <p class="hero__lede" style="margin-top:1rem">Scrapes Pakistani government job listings (FPSC, PPSC), extracts real eligibility requirements out of the PDF advertisements they're bundled in via Gemini, and shows every open job grouped by degree level — instead of manually refreshing two government websites.</p>
+      <div class="project-meta">
+        <span class="tag">BeautifulSoup</span><span class="tag">pdfplumber</span><span class="tag">Gemini API</span><span class="tag">sentence-transformers</span><span class="tag">SQLite</span><span class="tag">GitHub Actions</span>
+      </div>
+      <div class="btn-row" style="margin-top:1.2rem">
+        <a class="btn btn--primary" data-magnetic href="https://pk-job-tracker-xgbxf6amw5icfxszctem8q.streamlit.app/" target="_blank" rel="noopener">Live demo</a>
+        <a class="btn btn--ghost" data-magnetic href="https://github.com/Faizan4356/pk-job-tracker" target="_blank" rel="noopener">View code</a>
+      </div>
+
+      <div class="project-shot center">
+        <div class="sig-icon" data-reveal style="width:180px;height:180px;margin:0 auto;color:var(--accent)" role="img" aria-label="Document icon representing PDF eligibility extraction">
+          <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="24" y="10" width="72" height="100" rx="4"/>
+            <path d="M40 36h40M40 54h40M40 72h26"/>
+            <circle cx="86" cy="90" r="14"/>
+            <path d="M81 90l4 4 8-8"/>
+          </svg>
+        </div>
+        <p class="text-muted mono" style="margin-top:1rem;font-size:.8rem">scrape → extract eligibility (Gemini) → match</p>
+      </div>
+
+      <div class="pbp-grid">
+        <div class="pbp-card">
+          <span class="pbp-card__label">Problem</span>
+          <p>Government job ads are published as scanned PDFs across multiple sites, so eligibility criteria are effectively unsearchable without manually opening every advertisement.</p>
+        </div>
+        <div class="pbp-card">
+          <span class="pbp-card__label">Approach</span>
+          <p>A robots.txt-respecting daily scraper pulls listings; a separate, rate-limited PDF backfill step feeds ads through Gemini vision to extract structured eligibility; two independent match signals — a deterministic rule-based match and a semantic-similarity fuzzy score via sentence-transformers — surface relevant jobs.</p>
+        </div>
+        <div class="pbp-card">
+          <span class="pbp-card__label">Result</span>
+          <p>A Streamlit dashboard with an 8-category degree classification schema (Matric → PhD, plus Professional/Specialist), refreshed daily via GitHub Actions.</p>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <span class="section-head__index">// stack</span>
+        <h2>Layer breakdown</h2>
+      </div>
+      <table class="data-table">
+        <thead><tr><th scope="col">Layer</th><th scope="col">Technology</th></tr></thead>
+        <tbody>
+          <tr><td>Scraping</td><td class="mono">requests + BeautifulSoup</td></tr>
+          <tr><td>PDF Extraction</td><td class="mono">pdfplumber + Gemini vision</td></tr>
+          <tr><td>AI Extraction</td><td class="mono">Google Gemini API</td></tr>
+          <tr><td>Semantic Matching</td><td class="mono">sentence-transformers (all-MiniLM-L6-v2), local</td></tr>
+          <tr><td>Storage</td><td class="mono">SQLite</td></tr>
+          <tr><td>Dashboard</td><td class="mono">Streamlit</td></tr>
+          <tr><td>Automation</td><td class="mono">GitHub Actions (daily cron)</td></tr>
+        </tbody>
+      </table>
+
+      <nav class="project-nav" aria-label="Project navigation">
+        <a href="customer-intelligence.html">← Customer Intelligence Platform</a>
+        <a href="sales-forecasting.html">Next: Sales Forecasting →</a>
+      </nav>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>© 2026 Muhammad Faizan — built with hand-written CSS, GSAP &amp; Three.js</span>
+    <div class="footer-links">
+      <a href="https://github.com/Faizan4356" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/muhammad-faizan-544b72305/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:mf5768194@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

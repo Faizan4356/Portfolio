@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://faizan4356.github.io/portfolio/sitemap.xml

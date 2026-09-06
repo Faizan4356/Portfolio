@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Intelligence Platform — Muhammad Faizan</title>
+<meta name="description" content="A production-grade XGBoost churn classifier, a PyTorch LSTM usage-trend model, and a DistilBERT sentiment layer combined into one 0–100 Health Score, served through a 4-tab Streamlit app.">
+<link rel="canonical" href="https://faizan4356.github.io/portfolio/projects/customer-intelligence.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Customer Intelligence Platform — Muhammad Faizan">
+<meta property="og:description" content="XGBoost churn (AUC 0.839) + LSTM usage trend + DistilBERT sentiment combined into one 0–100 Health Score.">
+<meta property="og:image" content="https://faizan4356.github.io/portfolio/assets/img/headshot.jpg">
+<meta property="og:url" content="https://faizan4356.github.io/portfolio/projects/customer-intelligence.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<script>(function(){try{var t=localStorage.getItem('faizan-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Customer Intelligence Platform (churn-prediction-app)",
+  "applicationCategory": "Machine Learning",
+  "author": { "@type": "Person", "name": "Muhammad Faizan" },
+  "codeRepository": "https://github.com/Faizan4356/churn-prediction-app",
+  "url": "https://churn-prediction-app-8ioaenzecxexkcskdmzvxc.streamlit.app",
+  "description": "XGBoost churn classifier, PyTorch LSTM usage-trend model, and DistilBERT sentiment layer combined into one 0-100 Health Score."
+}
+</script>
+</head>
+<body class="grid-bg">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="signal-line" data-signal-line aria-hidden="true"><div class="signal-line__fill"></div></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html"><span class="brand__dot" aria-hidden="true"></span>FAIZAN.DS</a>
+    <button class="nav__burger" data-nav-burger aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="nav-links" data-nav-links>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../projects/index.html" aria-current="page">Projects</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__actions">
+      <button class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section project-hero" data-signal-marker aria-labelledby="p-title">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="../projects/index.html">Projects</a> / Customer Intelligence Platform</p>
+      <p class="eyebrow">ML · Deep Learning · NLP</p>
+      <h1 id="p-title" style="font-size:clamp(2rem,4.5vw,3.2rem)">Customer Intelligence Platform</h1>
+      <p class="hero__lede" style="margin-top:1rem">Started as a churn prediction model and grew into a full Customer Intelligence Platform — combining a production-grade XGBoost churn classifier, a PyTorch LSTM usage-trend model, and a DistilBERT sentiment layer into one 0–100 Health Score, served through a 4-tab Streamlit app.</p>
+      <div class="project-meta">
+        <span class="tag">XGBoost (AUC 0.839)</span><span class="tag">PyTorch LSTM</span><span class="tag">DistilBERT</span><span class="tag">SHAP</span><span class="tag">Streamlit</span>
+      </div>
+      <div class="btn-row" style="margin-top:1.2rem">
+        <a class="btn btn--primary" data-magnetic href="https://churn-prediction-app-8ioaenzecxexkcskdmzvxc.streamlit.app" target="_blank" rel="noopener">Live demo</a>
+        <a class="btn btn--ghost" data-magnetic href="https://github.com/Faizan4356/churn-prediction-app" target="_blank" rel="noopener">View code</a>
+      </div>
+
+      <div class="project-shot center">
+        <div class="sig-icon" data-reveal style="width:220px;height:120px;margin:0 auto;color:var(--accent)" role="img" aria-label="Churn-curve sparkline showing customer health trending downward then recovering">
+          <svg viewBox="0 0 220 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6,30 40,42 74,66 108,94 142,80 176,48 214,20"/>
+            <circle cx="108" cy="94" r="5" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <p class="text-muted mono" style="margin-top:1rem;font-size:.8rem">AUC 0.839 · optimized for recall on churn class</p>
+      </div>
+
+      <div class="pbp-grid">
+        <div class="pbp-card">
+          <span class="pbp-card__label">Problem</span>
+          <p>A single churn probability doesn't tell a customer success team *why* an account is at risk, or what's changed recently in behavior and sentiment.</p>
+        </div>
+        <div class="pbp-card">
+          <span class="pbp-card__label">Approach</span>
+          <p>Layered three models — an XGBoost churn classifier trained on real Telco data and optimized for recall, a PyTorch LSTM reading usage-trend sequences, and a pretrained DistilBERT sentiment scorer — then combined them into one interpretable Health Score with SHAP explanations.</p>
+        </div>
+        <div class="pbp-card">
+          <span class="pbp-card__label">Result</span>
+          <p>A 4-tab Streamlit app (Single Prediction, Search Existing Customer, What-If Simulator, Batch Upload) that's explicit about which parts are real data (churn) vs. synthetic-but-correlated (usage/sentiment).</p>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <span class="section-head__index">// stack</span>
+        <h2>Layer breakdown</h2>
+      </div>
+      <table class="data-table">
+        <thead><tr><th scope="col">Layer</th><th scope="col">Technology</th></tr></thead>
+        <tbody>
+          <tr><td>ML</td><td class="mono">scikit-learn, XGBoost (AUC 0.839, real Telco data)</td></tr>
+          <tr><td>Deep Learning</td><td class="mono">PyTorch LSTM (usage-trend classifier)</td></tr>
+          <tr><td>NLP</td><td class="mono">Hugging Face Transformers (pretrained DistilBERT sentiment)</td></tr>
+          <tr><td>Interpretation</td><td class="mono">SHAP</td></tr>
+          <tr><td>App</td><td class="mono">Streamlit</td></tr>
+        </tbody>
+      </table>
+
+      <nav class="project-nav" aria-label="Project navigation">
+        <a href="excel-dashboard.html">← Excel-to-Dashboard</a>
+        <a href="pk-job-tracker.html">Next: PK Govt Job Tracker →</a>
+      </nav>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>© 2026 Muhammad Faizan — built with hand-written CSS, GSAP &amp; Three.js</span>
+    <div class="footer-links">
+      <a href="https://github.com/Faizan4356" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/muhammad-faizan-544b72305/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:mf5768194@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>
