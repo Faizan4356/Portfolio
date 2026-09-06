@@ -59,6 +59,27 @@
     var nodes = new THREE.Points(nodeGeo, nodeMat);
     group.add(nodes);
 
+    /* "signal" node layer: a subset of points that fade in/out based on
+       live GitHub activity recency (see assets/js/github.js gh:signal
+       event), so node density visually pulses with something real rather
+       than being purely decorative. */
+    var signalIdx = [];
+    for (var s = 0; s < points.length; s += 4) signalIdx.push(s);
+    var signalPositions = [];
+    signalIdx.forEach(function (idx) {
+      signalPositions.push(points[idx].x, points[idx].y, points[idx].z);
+    });
+    var signalGeo = new THREE.BufferGeometry();
+    signalGeo.setAttribute("position", new THREE.Float32BufferAttribute(signalPositions, 3));
+    var signalMat = new THREE.PointsMaterial({ color: accentColor, size: 0.12, transparent: true, opacity: 0 });
+    var signalNodes = new THREE.Points(signalGeo, signalMat);
+    group.add(signalNodes);
+
+    var signalValue = 0.5;
+    window.addEventListener("gh:signal", function (e) {
+      signalValue = e.detail && typeof e.detail.value === "number" ? e.detail.value : 0.5;
+    });
+
     var linePositions = [];
     var LINK_DIST = 1.5;
     for (var a = 0; a < points.length; a++) {
@@ -89,6 +110,7 @@
       var c = hexToThreeColor(readAccent());
       nodeMat.color = c;
       lineMat.color = c;
+      signalMat.color = c;
     });
 
     var running = true;
@@ -106,13 +128,22 @@
     });
 
     var clock = new THREE.Clock();
+    var elapsed = 0;
     function animate() {
       requestAnimationFrame(animate);
       if (!running) return;
       var delta = reduceMotion ? 0.15 : clock.getDelta();
+      elapsed += delta;
       group.rotation.y += delta * (reduceMotion ? 0.02 : 0.08);
       group.rotation.x += delta * 0.015;
       group.rotation.y += (mouseX * 0.15 - group.rotation.y) * 0.002;
+
+      /* pulse the signal-node layer opacity + base node size in time with
+         the live activity signal, so the sphere reads as alive */
+      var pulse = 0.5 + 0.5 * Math.sin(elapsed * (0.6 + signalValue * 0.9));
+      signalMat.opacity = reduceMotion ? signalValue * 0.5 : signalValue * 0.7 * pulse;
+      nodeMat.size = 0.06 + signalValue * 0.02 * pulse;
+
       renderer.render(scene, camera);
     }
     animate();

@@ -5,6 +5,16 @@
    with a dark override. All color via CSS custom properties — no stray hex.
    ========================================================================== */
 
+/* ---- site-wide ambient background canvas (live training-loss curve) ---- */
+.bg-ds-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+}
+
 /* ---- tokens -------------------------------------------------------------*/
 :root {
   --bg: #faf6ee;
@@ -37,6 +47,7 @@
   --content-w: 1180px;
 
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --signal-intensity: 0.5; /* 0-1, set at runtime from live GitHub activity recency */
   color-scheme: light;
 }
 
@@ -176,9 +187,9 @@ main { display: block; position: relative; z-index: 1; }
   width: 100%;
   height: 0%;
   background: var(--accent);
-  box-shadow: 0 0 12px var(--accent);
+  box-shadow: 0 0 calc(6px + 10px * var(--signal-intensity, 0.5)) var(--accent);
   transform-origin: top;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.6s ease;
 }
 .signal-line__marker {
   position: absolute;
@@ -761,6 +772,146 @@ main { display: block; position: relative; z-index: 1; }
 .no-webgl .hero__canvas,
 .no-webgl .stats3d-canvas { display: none; }
 
+/* ---- live GitHub stat chip (hero) -------------------------------------- */
+.gh-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: var(--space-3);
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--card-bg) 60%, transparent);
+}
+.gh-chip__dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+.gh-chip.is-live .gh-chip__dot {
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+  animation: gh-pulse 2.4s ease-in-out infinite;
+}
+@keyframes gh-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.gh-chip strong { color: var(--text); font-weight: 700; }
+.gh-chip__sep { opacity: 0.4; }
+
+/* ---- terminal / activity log split -------------------------------------- */
+.terminal-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+@media (max-width: 800px) { .terminal-row { grid-template-columns: 1fr; } }
+.activity-log__body {
+  padding: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 3.4em;
+}
+.activity-log__line {
+  opacity: 0;
+  color: var(--text-muted);
+  border-left: 2px solid var(--border);
+  padding-left: 0.6rem;
+}
+.activity-log__line.is-in { opacity: 1; transition: opacity 0.4s ease; }
+.activity-log__line .gh-type { color: var(--accent-text); }
+.activity-log__line .gh-repo { color: var(--text); }
+.activity-log__line .gh-time { float: right; opacity: 0.6; }
+
+/* ---- live repo badge (project cards) ------------------------------------ */
+.repo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+.repo-badge__dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+.repo-badge.is-live .repo-badge__dot { background: var(--accent); }
+
+/* ---- card filter dim/highlight (GSAP-driven, class fallback) ------------ */
+.card.is-dimmed { opacity: 0.32; filter: saturate(0.5); }
+.card.is-matched { border-color: var(--accent); }
+
+/* ---- horizontal credentials timeline ------------------------------------ */
+.htimeline {
+  position: relative;
+  padding: var(--space-4) 0 var(--space-2);
+  overflow-x: auto;
+}
+.htimeline svg { display: block; min-width: 640px; width: 100%; height: 120px; }
+.htimeline-line {
+  stroke: var(--border-strong);
+  stroke-width: 2;
+}
+.htimeline-line__fill {
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 1.6s var(--ease);
+}
+.htimeline-line__fill.is-visible { stroke-dashoffset: 0; }
+.htimeline-dot {
+  fill: var(--card-bg);
+  stroke: var(--border-strong);
+  stroke-width: 2;
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+.htimeline-dot.is-visible { fill: var(--accent); stroke: var(--accent); }
+.htimeline-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--text-muted);
+}
+.htimeline-title {
+  font-family: var(--font-display);
+  font-size: 11px;
+  fill: var(--text);
+  font-weight: 600;
+}
+
+/* ---- footer ambient particle canvas -------------------------------------- */
+.site-footer { position: relative; overflow: hidden; }
+.footer-bg-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.site-footer .wrap { position: relative; z-index: 1; }
+.footer-updated {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+.connect-card__live {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-text);
+  display: block;
+  margin-top: 0.15rem;
+}
+
 /* ---- misc ---------------------------------------------------------------*/
 .mono { font-family: var(--font-mono); }
 .text-muted { color: var(--text-muted); }
@@ -770,4 +921,107 @@ main { display: block; position: relative; z-index: 1; }
   .wrap { padding: 0 var(--space-3); }
   .hero__inner { grid-template-columns: 1fr; }
   .photo-card { order: -1; }
+}
+
+/* ---- floating rotating cutout hero -------------------------------------- */
+.hero--cutout .hero__inner {
+  grid-template-columns: 1fr;
+  text-align: center;
+  justify-items: center;
+}
+.cutout-stage {
+  position: relative;
+  width: min(360px, 70vw);
+  aspect-ratio: 3 / 4;
+  margin: 0 auto var(--space-3);
+  perspective: 1400px;
+}
+.cutout-glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 38%, transparent) 0%, transparent 70%);
+  filter: blur(6px);
+  z-index: 0;
+  pointer-events: none;
+}
+.cutout-ring {
+  position: absolute;
+  inset: 6%;
+  z-index: 1;
+  pointer-events: none;
+}
+.cutout-ring svg { width: 100%; height: 100%; }
+.cutout-ring circle {
+  fill: none;
+  stroke: var(--border-strong);
+  stroke-width: 1;
+  stroke-dasharray: 4 7;
+}
+.cutout-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: -4%;
+  width: 62%;
+  height: 22px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, color-mix(in srgb, var(--text) 35%, transparent) 0%, transparent 72%);
+  filter: blur(4px);
+  z-index: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.cutout-photo-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.cutout-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.25));
+}
+.cutout-particles {
+  position: absolute;
+  inset: -12%;
+  z-index: 1;
+  pointer-events: none;
+}
+.cutout-particles span {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  opacity: 0.5;
+}
+@media (max-width: 640px) {
+  .cutout-particles { display: none; }
+}
+
+/* CSS fallback animation (used when GSAP fails to load) */
+@keyframes cutout-spin {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+@keyframes cutout-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.cutout-ring--outer svg { animation: cutout-ring-spin 26s linear infinite reverse; }
+.cutout-ring--inner svg { animation: cutout-ring-spin 20s linear infinite; }
+@keyframes cutout-ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cutout-photo-wrap[style] { animation: none !important; }
+  .cutout-ring--outer svg, .cutout-ring--inner svg { animation: none; }
+}
+.cutout-particles span {
+  animation: cutout-drift 9s ease-in-out infinite;
+}
+@keyframes cutout-drift {
+  0%, 100% { transform: translate(0, 0); opacity: 0.35; }
+  50% { transform: translate(6px, -10px); opacity: 0.7; }
 }

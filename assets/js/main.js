@@ -259,24 +259,204 @@
     type();
   }
 
-  /* ---------- filter buttons (projects index) ---------- */
+  /* ---------- filter buttons: dim/highlight (not hide) via GSAP -------- */
   function initFilters() {
     var bar = document.querySelector("[data-filters]");
     if (!bar) return;
     var buttons = bar.querySelectorAll(".filter-btn");
     var cards = document.querySelectorAll("[data-tech]");
+    var hasGsap = typeof gsap !== "undefined";
+
+    function apply(tech) {
+      cards.forEach(function (card) {
+        card.hidden = false;
+        var list = card.getAttribute("data-tech").split(",");
+        var match = tech === "all" || list.indexOf(tech) !== -1;
+        card.classList.toggle("is-dimmed", !match);
+        card.classList.toggle("is-matched", match && tech !== "all");
+        if (hasGsap) {
+          gsap.to(card, { opacity: match ? 1 : 0.32, scale: match ? 1 : 0.97, duration: 0.35, ease: "power2.out" });
+        }
+      });
+    }
+
     buttons.forEach(function (btn) {
       btn.addEventListener("click", function () {
         buttons.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
         btn.setAttribute("aria-pressed", "true");
-        var tech = btn.getAttribute("data-filter");
-        cards.forEach(function (card) {
-          var list = card.getAttribute("data-tech").split(",");
-          var show = tech === "all" || list.indexOf(tech) !== -1;
-          card.hidden = !show;
-        });
+        apply(btn.getAttribute("data-filter"));
       });
     });
+
+    /* clicking an individual tech tag on a card also filters, matching
+       the requested "click a tag to highlight/dim" interaction */
+    document.querySelectorAll(".tag[data-filter-tag]").forEach(function (tagEl) {
+      tagEl.style.cursor = "pointer";
+      tagEl.addEventListener("click", function (e) {
+        e.preventDefault();
+        var tech = tagEl.getAttribute("data-filter-tag");
+        var btn = bar.querySelector('.filter-btn[data-filter="' + tech + '"]');
+        if (btn) btn.click();
+      });
+    });
+  }
+
+  /* ---------- live GitHub stat chip (hero) ------------------------------ */
+  function initGhChip() {
+    var chip = document.querySelector("[data-gh-chip]");
+    if (!chip) return;
+    window.addEventListener("gh:user", function (e) {
+      var d = e.detail;
+      chip.innerHTML =
+        '<span class="gh-chip__dot" aria-hidden="true"></span>' +
+        "<span><strong>" + d.followers + "</strong> followers</span>" +
+        '<span class="gh-chip__sep">·</span>' +
+        "<span><strong>" + d.public_repos + "</strong> public repos</span>";
+      chip.classList.toggle("is-live", !!d.live);
+      chip.setAttribute("title", d.live ? "Live from GitHub" : "Cached — GitHub API unavailable");
+    });
+  }
+
+  /* ---------- live GitHub activity log (below/next to terminal) -------- */
+  function initActivityLog() {
+    var body = document.querySelector("[data-activity-log]");
+    if (!body) return;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.addEventListener("gh:events", function (e) {
+      var items = e.detail.items;
+      body.innerHTML = "";
+      if (!items || !items.length) {
+        var fallback = document.createElement("div");
+        fallback.className = "activity-log__line is-in";
+        fallback.textContent = "$ no recent public activity to display";
+        body.appendChild(fallback);
+        return;
+      }
+      items.forEach(function (item, i) {
+        var line = document.createElement("div");
+        line.className = "activity-log__line";
+        line.innerHTML =
+          '<span class="gh-type">' + window.FaizanGH.typeLabel(item.type) + "</span> → " +
+          '<span class="gh-repo">' + item.repo + "</span>" +
+          '<span class="gh-time">' + window.FaizanGH.relativeTime(item.created_at) + "</span>";
+        body.appendChild(line);
+        if (reduce) {
+          line.classList.add("is-in");
+        } else {
+          setTimeout(function () { line.classList.add("is-in"); }, i * 260);
+        }
+      });
+    });
+  }
+
+  /* ---------- live repo stat badges (project cards) --------------------- */
+  function initRepoBadges() {
+    var badges = document.querySelectorAll("[data-repo]");
+    if (!badges.length || !window.FaizanGH) return;
+    badges.forEach(function (badge) {
+      var repo = badge.getAttribute("data-repo");
+      window.addEventListener("gh:repo:" + repo, function (e) {
+        var d = e.detail;
+        var updated = d.updated ? window.FaizanGH.relativeTime(d.updated) : "—";
+        badge.innerHTML =
+          '<span class="repo-badge__dot" aria-hidden="true"></span>' +
+          "★ " + (d.stars != null ? d.stars : "—") + " · updated " + updated;
+        badge.classList.toggle("is-live", !!d.live);
+      }, { once: true });
+      window.FaizanGH.fetchRepo(repo);
+    });
+  }
+
+  /* ---------- horizontal credentials timeline draw-in -------------------- */
+  function initHTimeline() {
+    var el = document.querySelector("[data-htimeline]");
+    if (!el) return;
+    var targets = el.querySelectorAll(".htimeline-line__fill, .htimeline-dot");
+    if (!("IntersectionObserver" in window)) {
+      targets.forEach(function (t) { t.classList.add("is-visible"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          targets.forEach(function (t, i) {
+            setTimeout(function () { t.classList.add("is-visible"); }, i * 120);
+          });
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(el);
+  }
+
+  /* ---------- footer ambient particle canvas (2D, cursor parallax) ------ */
+  function initFooterParticles() {
+    var canvas = document.querySelector("[data-footer-canvas]");
+    if (!canvas) return;
+    var ctx = canvas.getContext("2d");
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function accent() {
+      return getComputedStyle(document.documentElement).getPropertyValue("--border-strong").trim() || "#888";
+    }
+
+    var dots = [];
+    var COLS = 14, ROWS = 5;
+    function layout() {
+      var w = canvas.clientWidth, h = canvas.clientHeight;
+      canvas.width = w * Math.min(window.devicePixelRatio || 1, 1.5);
+      canvas.height = h * Math.min(window.devicePixelRatio || 1, 1.5);
+      ctx.setTransform(Math.min(window.devicePixelRatio || 1, 1.5), 0, 0, Math.min(window.devicePixelRatio || 1, 1.5), 0, 0);
+      dots = [];
+      for (var y = 0; y < ROWS; y++) {
+        for (var x = 0; x < COLS; x++) {
+          dots.push({
+            baseX: (x + 0.5) * (w / COLS),
+            baseY: (y + 0.5) * (h / ROWS)
+          });
+        }
+      }
+    }
+    layout();
+    window.addEventListener("resize", layout);
+
+    var mx = -9999, my = -9999;
+    canvas.addEventListener("mousemove", function (e) {
+      var rect = canvas.getBoundingClientRect();
+      mx = e.clientX - rect.left;
+      my = e.clientY - rect.top;
+    });
+    canvas.addEventListener("mouseleave", function () { mx = -9999; my = -9999; });
+
+    var running = true;
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) { running = entry.isIntersecting; });
+      });
+      io.observe(canvas);
+    }
+
+    var t = 0;
+    function draw() {
+      requestAnimationFrame(draw);
+      if (!running) return;
+      t += reduce ? 0 : 0.006;
+      var w = canvas.clientWidth, h = canvas.clientHeight;
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = accent();
+      dots.forEach(function (d, i) {
+        var drift = reduce ? 0 : Math.sin(t + i) * 3;
+        var dx = d.baseX - mx, dy = d.baseY - my;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var push = dist < 90 ? (90 - dist) / 90 * 6 : 0;
+        var px = d.baseX + drift + (dist ? (dx / dist) * push : 0);
+        var py = d.baseY + drift * 0.6 + (dist ? (dy / dist) * push : 0);
+        ctx.beginPath();
+        ctx.arc(px, py, 1.4, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+    draw();
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -289,5 +469,10 @@
     initTilt();
     initTerminal();
     initFilters();
+    initGhChip();
+    initActivityLog();
+    initRepoBadges();
+    initHTimeline();
+    initFooterParticles();
   });
 })();

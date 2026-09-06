@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="assets/css/styles.css">
 <script>(function(){try{var t=localStorage.getItem('faizan-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script src="assets/js/bg-datascience.js" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -64,9 +65,22 @@
   <section class="section" style="padding-top:var(--space-5)" data-signal-marker aria-labelledby="about-title">
     <div class="wrap bio-grid">
       <div>
-        <p class="eyebrow">About</p>
-        <h1 id="about-title" style="font-size:clamp(2rem,4.5vw,3rem)">Muhammad Faizan</h1>
-        <p class="hero__lede" style="margin-top:1rem">Bachelor of Data Science graduate from the University of Management and Technology (UMT), completed 2026. I build end-to-end ML, deep learning and NLP systems — not notebooks that stop at a metric, but products with a served model, an interface, and an honest account of what's real data versus synthetic.</p>
+        <div style="display:flex;gap:1.6rem;align-items:flex-start;flex-wrap:wrap">
+          <div class="photo-card" style="justify-self:flex-start">
+            <div class="photo-card__stage" data-tilt-stage style="width:150px">
+              <div class="photo-card__grid" aria-hidden="true"></div>
+              <div class="photo-card__frame">
+                <img src="assets/img/headshot.jpg" alt="Portrait of Muhammad Faizan" width="150" height="188">
+              </div>
+              <span class="photo-card__tag mono">status: building</span>
+            </div>
+          </div>
+          <div style="flex:1;min-width:220px">
+            <p class="eyebrow">About</p>
+            <h1 id="about-title" style="font-size:clamp(2rem,4.5vw,3rem)">Muhammad Faizan</h1>
+          </div>
+        </div>
+        <p class="hero__lede" style="margin-top:1.4rem">Bachelor of Data Science graduate from the University of Management and Technology (UMT), completed 2026. I build end-to-end ML, deep learning and NLP systems — not notebooks that stop at a metric, but products with a served model, an interface, and an honest account of what's real data versus synthetic.</p>
         <p class="hero__lede" style="margin-top:1rem">My work spans computer vision (YOLOv8 detection pipelines), tabular ML (XGBoost, SHAP-explained), time series (Prophet, LSTM), and NLP (Transformer-based sentiment and LLM-as-planner architectures) — usually stitched together behind a Streamlit or React front end and a FastAPI backend.</p>
         <div class="btn-row" style="margin-top:1.6rem">
           <a class="btn btn--primary" data-magnetic href="projects/index.html">View projects</a>
@@ -173,6 +187,31 @@
         <span class="section-head__index">// 03</span>
         <h2 id="education-title">Education &amp; certifications</h2>
       </div>
+
+      <div class="htimeline" data-htimeline>
+        <svg viewBox="0 0 640 120" role="img" aria-labelledby="about-tl-title" preserveAspectRatio="xMinYMid meet">
+          <title id="about-tl-title">Timeline of certifications: Deloitte, BCG X Data Science, BCG X GenAI, and Tata, all completed September 2026</title>
+          <line class="htimeline-line" x1="30" y1="60" x2="610" y2="60"/>
+          <line class="htimeline-line__fill" x1="30" y1="60" x2="610" y2="60"/>
+
+          <circle class="htimeline-dot" data-reveal cx="90" cy="60" r="7"/>
+          <text class="htimeline-title" x="90" y="34" text-anchor="middle">Deloitte</text>
+          <text class="htimeline-label" x="90" y="88" text-anchor="middle">Sep 2026</text>
+
+          <circle class="htimeline-dot" data-reveal cx="260" cy="60" r="7"/>
+          <text class="htimeline-title" x="260" y="34" text-anchor="middle">BCG X · Data Science</text>
+          <text class="htimeline-label" x="260" y="88" text-anchor="middle">Sep 2026</text>
+
+          <circle class="htimeline-dot" data-reveal cx="430" cy="60" r="7"/>
+          <text class="htimeline-title" x="430" y="34" text-anchor="middle">BCG X · GenAI</text>
+          <text class="htimeline-label" x="430" y="88" text-anchor="middle">Sep 2026</text>
+
+          <circle class="htimeline-dot" data-reveal cx="580" cy="60" r="7"/>
+          <text class="htimeline-title" x="580" y="34" text-anchor="middle">Tata</text>
+          <text class="htimeline-label" x="580" y="88" text-anchor="middle">Sep 2026</text>
+        </svg>
+      </div>
+
       <table class="data-table">
         <thead><tr><th scope="col">Certificate</th><th scope="col">Issuer</th><th scope="col">Skills covered</th></tr></thead>
         <tbody>
@@ -188,8 +227,9 @@
 </main>
 
 <footer class="site-footer">
+  <canvas class="footer-bg-canvas" data-footer-canvas aria-hidden="true"></canvas>
   <div class="wrap footer-inner">
-    <span>© 2026 Muhammad Faizan — built with hand-written CSS, GSAP &amp; Three.js</span>
+    <span>© 2026 Muhammad Faizan — built with hand-written CSS, GSAP &amp; Three.js<br><span class="footer-updated">last deployed 2026-09-06</span></span>
     <div class="footer-links">
       <a href="https://github.com/Faizan4356" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/muhammad-faizan-544b72305/" target="_blank" rel="noopener">LinkedIn</a>
@@ -200,6 +240,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 <script src="assets/js/stats3d.js" defer></script>
+<script src="assets/js/github.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>
