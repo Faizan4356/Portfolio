@@ -49,6 +49,77 @@
     });
   }
 
+  /* ---------- accent palette switcher (independent of light/dark) ------
+     Reuses the same "themechange" event the theme toggle already fires —
+     hero3d.js, bg-datascience.js and stats3d.js all listen for it and
+     re-read --accent via getComputedStyle, so they re-tint on a palette
+     change with no code changes of their own. */
+  var PALETTE_KEY = "faizan-palette";
+  var PALETTE_NAMES = { amber: "amber", cyan: "cyan", violet: "violet", sage: "sage" };
+
+  function applyPalette(name) {
+    if (PALETTE_NAMES[name] && name !== "amber") {
+      root.setAttribute("data-palette", name);
+    } else {
+      root.removeAttribute("data-palette"); // amber is the unscoped default
+    }
+  }
+
+  (function initPaletteEarly() {
+    var stored = localStorage.getItem(PALETTE_KEY);
+    if (stored) applyPalette(stored);
+  })();
+
+  function initPaletteSwitcher() {
+    var group = document.querySelector("[data-palette-switcher]");
+    if (!group) return;
+    var swatches = group.querySelectorAll(".palette-swatch");
+
+    function current() {
+      return localStorage.getItem(PALETTE_KEY) || "amber";
+    }
+    function reflect() {
+      var active = current();
+      swatches.forEach(function (s) {
+        s.setAttribute("aria-pressed", String(s.getAttribute("data-palette-value") === active));
+      });
+    }
+    reflect();
+
+    swatches.forEach(function (s) {
+      s.addEventListener("click", function () {
+        var name = s.getAttribute("data-palette-value");
+        applyPalette(name);
+        localStorage.setItem(PALETTE_KEY, name);
+        reflect();
+        document.dispatchEvent(new CustomEvent("themechange", { detail: { palette: name } }));
+      });
+    });
+  }
+
+  /* ---------- photo tint toggle: opt-in accent-tinted duotone on the hero
+     cutout, tied to whichever palette is active (see --duotone-hue in
+     styles.css). True color stays the default. ---------------------- */
+  var PHOTO_TINT_KEY = "faizan-photo-tint";
+  function initPhotoStyleToggle() {
+    var btn = document.querySelector("[data-photo-style-toggle]");
+    var wrap = document.querySelector("[data-cutout-photo]");
+    if (!btn || !wrap) return;
+
+    function reflect(on) {
+      wrap.classList.toggle("is-tinted", on);
+      btn.setAttribute("aria-pressed", String(on));
+      btn.textContent = on ? "true color photo" : "tint photo to palette";
+    }
+    reflect(localStorage.getItem(PHOTO_TINT_KEY) === "on");
+
+    btn.addEventListener("click", function () {
+      var next = !wrap.classList.contains("is-tinted");
+      reflect(next);
+      localStorage.setItem(PHOTO_TINT_KEY, next ? "on" : "off");
+    });
+  }
+
   /* ---------- mobile nav ---------- */
   function initNav() {
     var burger = document.querySelector("[data-nav-burger]");
@@ -259,32 +330,72 @@
     type();
   }
 
-  /* ---------- filter buttons: dim/highlight (not hide) via GSAP -------- */
+  /* ---------- filter buttons: fade+shrink out, grid reflows, live count,
+     shareable via ?tag= query param ------------------------------------ */
   function initFilters() {
     var bar = document.querySelector("[data-filters]");
     if (!bar) return;
     var buttons = bar.querySelectorAll(".filter-btn");
     var cards = document.querySelectorAll("[data-tech]");
+    var countEl = document.querySelector("[data-filter-count]");
     var hasGsap = typeof gsap !== "undefined";
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    function apply(tech) {
+    function updateCount(shown) {
+      if (!countEl) return;
+      countEl.textContent = "Showing " + shown + " of " + cards.length + " projects";
+    }
+
+    function apply(tech, pushUrl) {
+      var shown = 0;
       cards.forEach(function (card) {
-        card.hidden = false;
         var list = card.getAttribute("data-tech").split(",");
         var match = tech === "all" || list.indexOf(tech) !== -1;
-        card.classList.toggle("is-dimmed", !match);
-        card.classList.toggle("is-matched", match && tech !== "all");
-        if (hasGsap) {
-          gsap.to(card, { opacity: match ? 1 : 0.32, scale: match ? 1 : 0.97, duration: 0.35, ease: "power2.out" });
+        if (match) shown++;
+
+        if (reduce || !hasGsap) {
+          card.hidden = !match;
+          return;
         }
+
+        if (match) {
+          card.hidden = false;
+          gsap.fromTo(
+            card,
+            { opacity: 0, scale: 0.92 },
+            { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }
+          );
+        } else if (!card.hidden) {
+          gsap.to(card, {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.25,
+            ease: "power2.in",
+            onComplete: function () { card.hidden = true; }
+          });
+        }
+      });
+      updateCount(shown);
+
+      if (pushUrl) {
+        var url = new URL(window.location.href);
+        if (tech === "all") url.searchParams.delete("tag");
+        else url.searchParams.set("tag", tech);
+        history.replaceState(null, "", url.pathname + url.search);
+      }
+    }
+
+    function activateButton(tech) {
+      buttons.forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.getAttribute("data-filter") === tech));
       });
     }
 
     buttons.forEach(function (btn) {
       btn.addEventListener("click", function () {
-        buttons.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
-        btn.setAttribute("aria-pressed", "true");
-        apply(btn.getAttribute("data-filter"));
+        var tech = btn.getAttribute("data-filter");
+        activateButton(tech);
+        apply(tech, true);
       });
     });
 
@@ -299,6 +410,15 @@
         if (btn) btn.click();
       });
     });
+
+    /* restore a filtered view from ?tag= on load, so it's linkable/shareable */
+    var initialTag = new URL(window.location.href).searchParams.get("tag");
+    if (initialTag && bar.querySelector('.filter-btn[data-filter="' + initialTag + '"]')) {
+      activateButton(initialTag);
+      apply(initialTag, false);
+    } else {
+      updateCount(cards.length);
+    }
   }
 
   /* ---------- live GitHub stat chip (hero) ------------------------------ */
@@ -461,6 +581,8 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     initThemeToggle();
+    initPaletteSwitcher();
+    initPhotoStyleToggle();
     initNav();
     initSignalLine();
     initReveal();
