@@ -515,6 +515,18 @@ main { display: block; position: relative; z-index: 1; }
   flex-wrap: wrap;
 }
 .stat { font-family: var(--font-mono); }
+.stat__ring-row { display: flex; align-items: center; gap: 0.4rem; }
+.stat__ring { width: 28px; height: 28px; flex-shrink: 0; transform: rotate(-90deg); }
+.stat__ring-track { fill: none; stroke: var(--border); stroke-width: 3; }
+.stat__ring-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 81.68;
+  stroke-dashoffset: 81.68;
+  transition: stroke-dashoffset 0.1s linear;
+}
 .stat__num { font-size: 1.6rem; color: var(--accent-text); font-weight: 700; }
 .stat__label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
 .hero__cta { margin-top: var(--space-4); }
@@ -642,7 +654,13 @@ main { display: block; position: relative; z-index: 1; }
   overflow: hidden;
   transition: transform 0.3s var(--ease), border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.card:hover { transform: translateY(-4px); border-color: var(--border-strong); box-shadow: var(--shadow); }
+.card:hover { border-color: var(--border-strong); box-shadow: var(--shadow); }
+/* mouse-hover tilt is applied inline by initCardTilt() in main.js; this
+   covers touch/keyboard focus, where that JS intentionally doesn't run */
+.card:focus-within { transform: translateY(-4px); }
+@media (hover: none) {
+  .card:active { transform: translateY(-2px); }
+}
 .card--span-4 { grid-column: span 4; }
 .card--span-3 { grid-column: span 3; }
 .card--span-2 { grid-column: span 2; }
@@ -971,6 +989,47 @@ main { display: block; position: relative; z-index: 1; }
 .no-webgl .hero__canvas,
 .no-webgl .stats3d-canvas { display: none; }
 
+/* ---- hero cursor trail: small accent dots, "data points sampled" ------ */
+.cursor-trail-dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 4px var(--accent);
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0.8;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 2;
+}
+
+/* ---- radar chart hover highlight ---------------------------------------*/
+.radar-label.is-hovered { fill: var(--accent-text); font-weight: 700; }
+
+/* ---- GitHub fetch loading indicator (terminal activity log header) ---- */
+.gh-load-pulse {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 0.4rem;
+  animation: gh-pulse 1s ease-in-out infinite;
+}
+.gh-load-pulse.is-done {
+  animation: none;
+  background: transparent;
+  width: auto;
+  height: auto;
+  margin-right: 0.3rem;
+}
+.gh-load-pulse.is-done::before {
+  content: "✓";
+  color: var(--accent-text);
+  font-size: 0.75rem;
+}
+
 /* ---- live GitHub stat chip (hero) -------------------------------------- */
 .gh-chip {
   display: inline-flex;
@@ -1213,6 +1272,40 @@ main { display: block; position: relative; z-index: 1; }
 }
 @media (max-width: 640px) {
   .cutout-particles { display: none; }
+}
+
+/* ---- audio-reactive talking-avatar overlay (assets/js/talking-avatar.js)
+   — only ever created if assets/audio/intro.mp3 exists; --mouth-left/
+   --mouth-top are a PLACEHOLDER guess and need visual tuning against the
+   real cutout photo once the audio asset is added. ------------------- */
+.cutout-mouth {
+  position: absolute;
+  left: var(--mouth-left, 49%);
+  top: var(--mouth-top, 61%);
+  width: 20px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(20, 16, 10, 0.55);
+  transform: translate(-50%, -50%) scaleY(1);
+  transform-origin: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 0.08s linear, transform 0.08s linear;
+}
+.avatar-play-btn {
+  display: flex;
+  margin: var(--space-2) auto 0;
+  align-items: center;
+  gap: 0.4rem;
+}
+.avatar-play-icon { font-size: 0.7em; }
+.avatar-captions {
+  max-width: 40ch;
+  margin: 0.6rem auto 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  min-height: 1.4em;
 }
 
 /* CSS fallback animation (used when GSAP fails to load): a bounded

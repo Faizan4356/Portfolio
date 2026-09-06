@@ -39,6 +39,13 @@
 
     var tiltX = 0, tiltY = 0; /* cursor-driven offset, added to idle */
     var idleY = 0, idleX = 0;
+    var ampTiltX = 0; /* small extra nod driven by talking-avatar.js during
+                          voice playback, if that feature is active — summed
+                          in and clamped to the same caps as everything else */
+    window.addEventListener("avatar:amplitude", function (e) {
+      var v = e.detail && typeof e.detail.value === "number" ? e.detail.value : 0;
+      ampTiltX = v * 4; /* a few degrees max, per spec */
+    });
 
     if (typeof gsap !== "undefined") {
       gsap.to(stage, {
@@ -74,7 +81,7 @@
       idleX = Math.sin(t * Math.PI * 2 * IDLE_X_HZ) * MAX_X;
 
       var finalY = clamp(idleY + tiltY, MAX_Y);
-      var finalX = clamp(idleX + tiltX, MAX_X);
+      var finalX = clamp(idleX + tiltX + ampTiltX, MAX_X);
 
       wrap.style.transform = "rotateY(" + finalY + "deg) rotateX(" + finalX + "deg)";
 

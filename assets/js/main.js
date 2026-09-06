@@ -208,12 +208,18 @@
     if (!els.length) return;
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    var RING_CIRC = 81.68; /* 2*pi*13, matches .stat__ring-fill's r=13 in CSS */
+
     function run(el) {
       var target = parseFloat(el.getAttribute("data-countup"));
       var decimals = (el.getAttribute("data-countup").split(".")[1] || "").length;
       var suffix = el.getAttribute("data-suffix") || "";
+      var statEl = el.closest(".stat");
+      var ring = statEl ? statEl.querySelector("[data-ring]") : null;
+
       if (reduce) {
         el.textContent = target.toFixed(decimals) + suffix;
+        if (ring) ring.style.strokeDashoffset = "0";
         return;
       }
       var start = 0;
@@ -225,6 +231,7 @@
         var eased = 1 - Math.pow(1 - progress, 3);
         var val = start + (target - start) * eased;
         el.textContent = val.toFixed(decimals) + suffix;
+        if (ring) ring.style.strokeDashoffset = String(RING_CIRC * (1 - eased));
         if (progress < 1) requestAnimationFrame(step);
       }
       requestAnimationFrame(step);
@@ -282,6 +289,81 @@
     });
     wrap.addEventListener("mouseleave", function () {
       stage.style.transform = "rotateY(0) rotateX(0)";
+    });
+  }
+
+  /* ---------- project card hover tilt: subtle depth, cursor-driven ----- */
+  function initCardTilt() {
+    if (window.matchMedia("(hover: none)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var cards = document.querySelectorAll(".card");
+    cards.forEach(function (card) {
+      card.style.transformStyle = "preserve-3d";
+      card.addEventListener("mousemove", function (e) {
+        var rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width - 0.5;
+        var y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform =
+          "translateY(-4px) rotateY(" + x * 5 + "deg) rotateX(" + -y * 5 + "deg)";
+      });
+      card.addEventListener("mouseleave", function () {
+        card.style.transform = "";
+      });
+    });
+  }
+
+  /* ---------- hero-scoped cursor trail: small fading dots, evoking
+     "data points being sampled" rather than a generic glitter trail ----- */
+  function initCursorTrail() {
+    if (window.matchMedia("(hover: none)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var hero = document.querySelector(".hero");
+    if (!hero) return;
+    var lastSpawn = 0;
+    hero.addEventListener("mousemove", function (e) {
+      var now = performance.now();
+      if (now - lastSpawn < 45) return; /* throttle spawn rate */
+      lastSpawn = now;
+      var rect = hero.getBoundingClientRect();
+      var dot = document.createElement("span");
+      dot.className = "cursor-trail-dot";
+      dot.style.left = (e.clientX - rect.left) + "px";
+      dot.style.top = (e.clientY - rect.top) + "px";
+      hero.appendChild(dot);
+      requestAnimationFrame(function () {
+        dot.style.opacity = "0";
+        dot.style.transform = "translate(-50%, -50%) scale(0.4)";
+      });
+      setTimeout(function () { dot.remove(); }, 420);
+    });
+  }
+
+  /* ---------- terminal/activity-log loading indicator: a pulsing dot
+     while the real GitHub fetch is in flight, a static checkmark once it
+     resolves (live or fallback) — ties the decoration to real state ---- */
+  function initGhLoadingIndicator() {
+    var titleEl = document.querySelector(".activity-log__body");
+    if (!titleEl) return;
+    var bar = titleEl.previousElementSibling; /* .terminal__bar */
+    var titleSpan = bar && bar.querySelector(".terminal__title");
+    if (!titleSpan) return;
+    var pulse = document.createElement("span");
+    pulse.className = "gh-load-pulse";
+    pulse.setAttribute("aria-hidden", "true");
+    titleSpan.parentNode.insertBefore(pulse, titleSpan);
+    window.addEventListener("gh:events", function () {
+      pulse.className = "gh-load-pulse is-done";
+      pulse.textContent = "";
+    }, { once: true });
+  }
+
+  /* ---------- radar chart hover: highlight the hovered axis label ------ */
+  function initRadarHover() {
+    document.querySelectorAll(".radar-label").forEach(function (label) {
+      label.style.cursor = "default";
+      label.style.transition = "fill 0.2s ease, font-weight 0.2s ease";
+      label.addEventListener("mouseenter", function () { label.classList.add("is-hovered"); });
+      label.addEventListener("mouseleave", function () { label.classList.remove("is-hovered"); });
     });
   }
 
@@ -589,6 +671,10 @@
     initCountUp();
     initMagnetic();
     initTilt();
+    initCardTilt();
+    initCursorTrail();
+    initGhLoadingIndicator();
+    initRadarHover();
     initTerminal();
     initFilters();
     initGhChip();
