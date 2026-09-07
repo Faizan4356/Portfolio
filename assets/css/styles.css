@@ -1340,3 +1340,193 @@ main { display: block; position: relative; z-index: 1; }
   0%, 100% { transform: translate(0, 0); opacity: 0.35; }
   50% { transform: translate(6px, -10px); opacity: 0.7; }
 }
+
+/* ==========================================================================
+   Showcase page (showcase.html) — bold arcade-editorial gallery.
+   Forced dark: an inline pre-paint script sets data-theme="dark" on <html>
+   unconditionally for this page only, so it reuses the site's existing
+   dark-theme + palette CSS blocks as-is (no new color tokens introduced —
+   --accent still follows whichever palette is active elsewhere). Bigger
+   type scale and more negative space than the rest of the site is the
+   intended effect here; same --font-display/--font-mono variables.
+   ========================================================================== */
+.showcase-page { background: var(--bg); }
+.showcase-page .site-header { border-bottom-color: var(--border); }
+
+.showcase-hero {
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: var(--space-6) 0;
+}
+.showcase-hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--accent-text);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.showcase-hero__eyebrow::before {
+  content: "";
+  width: 28px; height: 1px;
+  background: var(--accent);
+}
+.showcase-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 11vw, 8.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  margin-top: var(--space-3);
+  text-transform: uppercase;
+}
+.showcase-hero h1 em {
+  font-style: normal;
+  color: var(--accent-text);
+}
+.showcase-hero__lede {
+  margin-top: var(--space-4);
+  max-width: 52ch;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+.showcase-scroll-cue {
+  position: absolute;
+  bottom: var(--space-4);
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.showcase-scroll-cue__arrow { animation: showcase-bounce 1.8s ease-in-out infinite; }
+@keyframes showcase-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .showcase-scroll-cue__arrow { animation: none; }
+}
+
+.showcase-entry {
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--border);
+}
+.showcase-entry__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: center;
+}
+.showcase-entry--reverse .showcase-entry__grid { direction: rtl; }
+.showcase-entry--reverse .showcase-entry__grid > * { direction: ltr; }
+@media (max-width: 860px) {
+  .showcase-entry__grid { grid-template-columns: 1fr; }
+  .showcase-entry--reverse .showcase-entry__grid { direction: ltr; }
+}
+
+.showcase-entry__tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-text);
+  text-transform: uppercase;
+}
+.showcase-entry h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.5vw, 3.6rem);
+  line-height: 1;
+  text-transform: uppercase;
+  margin-top: 0.6rem;
+}
+.showcase-entry__desc {
+  margin-top: var(--space-3);
+  max-width: 56ch;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+.showcase-spec {
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-3) 0;
+}
+.showcase-spec__row { display: flex; gap: 1rem; }
+.showcase-spec__key { color: var(--text-muted); min-width: 6.5rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.showcase-spec__val { color: var(--text); }
+.showcase-entry__cta {
+  margin-top: var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  color: var(--accent-text);
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, gap 0.2s ease;
+}
+.showcase-entry__cta:hover, .showcase-entry__cta:focus-visible {
+  border-color: var(--accent);
+  gap: 0.8rem;
+}
+
+.showcase-entry__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  background: var(--card-bg);
+  color: var(--accent);
+  padding: var(--space-5);
+}
+.showcase-entry__visual svg { width: 100%; height: 100%; overflow: visible; }
+
+/* reuse the shared reveal mechanism ([data-reveal] + main.js's
+   IntersectionObserver) but with a fade+rise instead of the sig-icon
+   stroke-dashoffset draw-in, since these are full sections not icons */
+.showcase-entry[data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.showcase-entry[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .showcase-entry[data-reveal] { opacity: 1; transform: none; transition: none; }
+}
+
+.showcase-explainer {
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--border);
+  max-width: 70ch;
+}
+.showcase-explainer p { font-size: 1.05rem; color: var(--text-muted); }
+.showcase-explainer strong { color: var(--text); font-weight: 600; }
+
+.showcase-stats {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+}
+.showcase-stats .stat__num { font-size: 2.2rem; }
+
+.showcase-faq {
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--border);
+}
+.showcase-faq__item { border-bottom: 1px solid var(--border); padding: var(--space-3) 0; }
+.showcase-faq__q { font-family: var(--font-display); font-size: 1.2rem; }
+.showcase-faq__a { margin-top: 0.6rem; color: var(--text-muted); max-width: 65ch; }

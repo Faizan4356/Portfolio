@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Showcase — Muhammad Faizan</title>
+<meta name="description" content="An editorial gallery of all eight shipped projects — computer vision, forecasting, NLP and full-stack ML apps — with real stack, status and metric for each.">
+<link rel="canonical" href="https://faizan4356.github.io/Portfolio/showcase.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Showcase — Muhammad Faizan">
+<meta property="og:description" content="An editorial gallery of all eight shipped projects, with real stack, status and metric for each.">
+<meta property="og:image" content="https://faizan4356.github.io/Portfolio/assets/img/headshot.jpg">
+<meta property="og:url" content="https://faizan4356.github.io/Portfolio/showcase.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script>(function(){try{
+  /* this page is permanently dark, regardless of the site's stored theme
+     preference — reuses the existing dark-theme CSS block as-is */
+  document.documentElement.setAttribute('data-theme','dark');
+  var p=localStorage.getItem('faizan-palette');
+  if(p&&p!=='amber')document.documentElement.setAttribute('data-palette',p);
+}catch(e){}})();</script>
+</head>
+<body class="grid-bg showcase-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="signal-line" data-signal-line aria-hidden="true"><div class="signal-line__fill"></div></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><span class="brand__dot" aria-hidden="true"></span>FAIZAN.DS</a>
+    <button class="nav__burger" data-nav-burger aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="nav-links" data-nav-links>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects/index.html">Projects</a></li>
+      <li><a href="showcase.html" aria-current="page">Showcase</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="assets/resume.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a></li>
+    </ul>
+    <div class="nav__actions">
+      <div class="palette-switcher" data-palette-switcher role="group" aria-label="Accent color palette">
+        <button class="palette-swatch" data-palette-value="amber" aria-pressed="true" aria-label="Switch to amber color scheme" style="--swatch-color:#d97706"></button>
+        <button class="palette-swatch" data-palette-value="cyan" aria-pressed="false" aria-label="Switch to cyan color scheme" style="--swatch-color:#0891b2"></button>
+        <button class="palette-swatch" data-palette-value="violet" aria-pressed="false" aria-label="Switch to violet color scheme" style="--swatch-color:#7c3aed"></button>
+        <button class="palette-swatch" data-palette-value="sage" aria-pressed="false" aria-label="Switch to sage color scheme" style="--swatch-color:#4d7c0f"></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="showcase-hero wrap" aria-labelledby="showcase-title">
+    <p class="showcase-hero__eyebrow">8 projects — shipped &amp; live</p>
+    <h1 id="showcase-title">Run a<br>model<br><em>→ see it work</em></h1>
+    <p class="showcase-hero__lede">Every project below ends behind a real interface, not a notebook cell. Scroll for the stack, the status, and — where one exists — the actual reported metric, for each of the eight.</p>
+    <div class="showcase-scroll-cue" aria-hidden="true">
+      <span>Scroll</span><span class="showcase-scroll-cue__arrow">↓</span>
+    </div>
+  </section>
+
+  <!-- 01 — SmokeGuard -->
+  <section class="showcase-entry" data-reveal aria-labelledby="sc-01-title">
+    <div class="wrap showcase-entry__grid">
+      <div>
+        <p class="showcase-entry__tag">Project 01 — Computer Vision</p>
+        <h2 id="sc-01-title">SmokeGuard</h2>
+        <p class="showcase-entry__desc">Custom YOLOv8 model detecting cigarettes and smoking behavior, served through FastAPI with a React dashboard.</p>
+        <div class="showcase-spec">
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Stack</span><span class="showcase-spec__val">YOLOv8n, FastAPI, React</span></div>
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Status</span><span class="showcase-spec__val">Live demo deployed</span></div>
+        </div>
+        <a class="showcase-entry__cta" href="https://smokeguard.onrender.com/" target="_blank" rel="noopener">Open live demo →</a>
+      </div>
+      <div class="showcase-entry__visual" role="img" aria-label="Illustrative precision and recall bar pair for SmokeGuard's detector">
+        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="10" y1="108" x2="110" y2="108"/>
+          <rect x="30" y="38" width="20" height="70" fill="currentColor" stroke="none"/>
+          <rect x="70" y="54" width="20" height="54" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — AI-Powered Data Analyst -->
+  <section class="showcase-entry showcase-entry--reverse" data-reveal aria-labelledby="sc-02-title">
+    <div class="wrap showcase-entry__grid">
+      <div>
+        <p class="showcase-entry__tag">Project 02 — NLP / LLM Tooling</p>
+        <h2 id="sc-02-title">AI-Powered Data Analyst</h2>
+        <p class="showcase-entry__desc">Upload a CSV, ask questions in plain English. The LLM only plans; Pandas/SQL/scikit-learn execute every number.</p>
+        <div class="showcase-spec">
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Stack</span><span class="showcase-spec__val">Streamlit, DuckDB, Groq/Ollama</span></div>
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Status</span><span class="showcase-spec__val">Code released</span></div>
+        </div>
+        <a class="showcase-entry__cta" href="projects/ai-data-analyst.html">View case study →</a>
+      </div>
+      <div class="showcase-entry__visual" role="img" aria-label="Flow diagram representing the LLM planner routing to a Pandas/SQL executor">
+        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="20" cy="26" r="8"/><circle cx="98" cy="20" r="8"/><circle cx="98" cy="92" r="8"/><circle cx="26" cy="92" r="8"/>
+          <path d="M28 30l64-6M28 88l64 2M55 55l38-30M55 55l38 32M55 55L28 32M55 55l-24 36"/>
+          <circle cx="55" cy="55" r="10" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — Gender Classification -->
+  <section class="showcase-entry" data-reveal aria-labelledby="sc-03-title">
+    <div class="wrap showcase-entry__grid">
+      <div>
+        <p class="showcase-entry__tag">Project 03 — Computer Vision</p>
+        <h2 id="sc-03-title">Gender Classification</h2>
+        <p class="showcase-entry__desc">Detects people in an image and classifies male/female in real time, from dataset prep to a live inference frontend.</p>
+        <div class="showcase-spec">
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Stack</span><span class="showcase-spec__val">YOLOv8, EfficientNetB0</span></div>
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Result</span><span class="showcase-spec__val">95.7% precision · 92.8% mAP50</span></div>
+        </div>
+        <a class="showcase-entry__cta" href="projects/gender-classification.html">View case study →</a>
+      </div>
+      <div class="showcase-entry__visual" role="img" aria-label="Confusion-matrix grid for the male/female classifier">
+        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="10" y="10" width="47" height="47" fill="currentColor" opacity="0.9"/>
+          <rect x="63" y="10" width="47" height="47" fill="currentColor" opacity="0.15"/>
+          <rect x="10" y="63" width="47" height="47" fill="currentColor" opacity="0.15"/>
+          <rect x="63" y="63" width="47" height="47" fill="currentColor" opacity="0.9"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — 3D-StyleForge -->
+  <section class="showcase-entry showcase-entry--reverse" data-reveal aria-labelledby="sc-04-title">
+    <div class="wrap showcase-entry__grid">
+      <div>
+        <p class="showcase-entry__tag">Project 04 — Computer Vision / 3D</p>
+        <h2 id="sc-04-title">3D-StyleForge</h2>
+        <p class="showcase-entry__desc">Generates a 2D virtual try-on image, then converts it into a web-ready 3D avatar (GLB) via a cloud image-to-3D API.</p>
+        <div class="showcase-spec">
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Stack</span><span class="showcase-spec__val">IDM-VTON, Hi3D, React, FastAPI</span></div>
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Status</span><span class="showcase-spec__val">Code released</span></div>
+        </div>
+        <a class="showcase-entry__cta" href="projects/3d-styleforge.html">View case study →</a>
+      </div>
+      <div class="showcase-entry__visual" role="img" aria-label="Isometric cube icon representing the 2D-to-3D conversion pipeline">
+        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M60 12l44 24v48l-44 24-44-24V36z"/>
+          <path d="M16 36l44 24 44-24M60 60v48"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 — Excel-to-Dashboard -->
+  <section class="showcase-entry" data-reveal aria-labelledby="sc-05-title">
+    <div class="wrap showcase-entry__grid">
+      <div>
+        <p class="showcase-entry__tag">Project 05 — Frontend / Client-Side BI</p>
+        <h2 id="sc-05-title">Excel-to-Dashboard</h2>
+        <p class="showcase-entry__desc">Turns any spreadsheet into an interactive, in-browser BI dashboard — fully client-side, no backend or upload.</p>
+        <div class="showcase-spec">
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Stack</span><span class="showcase-spec__val">React, SheetJS, Chart.js</span></div>
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Deploy</span><span class="showcase-spec__val">GitHub Pages</span></div>
+        </div>
+        <a class="showcase-entry__cta" href="https://faizan4356.github.io/Excel-to--Dashboard/" target="_blank" rel="noopener">Open live demo →</a>
+      </div>
+      <div class="showcase-entry__visual" role="img" aria-label="Illustrative category-breakdown bar chart">
+        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <line x1="10" y1="108" x2="110" y2="108"/>
+          <rect x="20" y="66" width="16" height="42" fill="currentColor"/>
+          <rect x="44" y="38" width="16" height="70" fill="currentColor"/>
+          <rect x="68" y="54" width="16" height="54" fill="currentColor"/>
+          <rect x="92" y="26" width="16" height="82" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 — Customer Intelligence Platform -->
+  <section class="showcase-entry showcase-entry--reverse" data-reveal aria-labelledby="sc-06-title">
+    <div class="wrap showcase-entry__grid">
+      <div>
+        <p class="showcase-entry__tag">Project 06 — ML / Deep Learning / NLP</p>
+        <h2 id="sc-06-title">Customer Intelligence Platform</h2>
+        <p class="showcase-entry__desc">XGBoost churn classifier + PyTorch LSTM usage trend + DistilBERT sentiment, combined into one 0–100 Health Score.</p>
+        <div class="showcase-spec">
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Stack</span><span class="showcase-spec__val">XGBoost, PyTorch LSTM, SHAP</span></div>
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Result</span><span class="showcase-spec__val">AUC 0.839 · 77% recall</span></div>
+        </div>
+        <a class="showcase-entry__cta" href="https://churn-prediction-app-8ioaenzecxexkcskdmzvxc.streamlit.app" target="_blank" rel="noopener">Open live demo →</a>
+      </div>
+      <div class="showcase-entry__visual" role="img" aria-label="Radial gauge showing the churn model's AUC of 0.839">
+        <svg viewBox="0 0 120 120" style="transform:rotate(-90deg)">
+          <circle cx="60" cy="60" r="44" fill="none" stroke="currentColor" stroke-opacity="0.2" stroke-width="6"/>
+          <circle cx="60" cy="60" r="44" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-dasharray="276.5" stroke-dashoffset="44.5"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 — PK Govt Job Tracker -->
+  <section class="showcase-entry" data-reveal aria-labelledby="sc-07-title">
+    <div class="wrap showcase-entry__grid">
+      <div>
+        <p class="showcase-entry__tag">Project 07 — NLP / Web Scraping</p>
+        <h2 id="sc-07-title">PK Govt Job Tracker</h2>
+        <p class="showcase-entry__desc">Scrapes FPSC/PPSC listings and extracts eligibility from PDF ads via Gemini, grouped by degree level.</p>
+        <div class="showcase-spec">
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Stack</span><span class="showcase-spec__val">Gemini API, SQLite, GitHub Actions</span></div>
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Status</span><span class="showcase-spec__val">Live, refreshed daily</span></div>
+        </div>
+        <a class="showcase-entry__cta" href="https://pk-job-tracker-xgbxf6amw5icfxszctem8q.streamlit.app/" target="_blank" rel="noopener">Open live demo →</a>
+      </div>
+      <div class="showcase-entry__visual" role="img" aria-label="Illustrative step chart implying listings tracked over time">
+        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="10,98 10,82 38,82 38,66 66,66 66,44 94,44 94,22 110,22"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 — Sales / Demand Forecasting -->
+  <section class="showcase-entry showcase-entry--reverse" data-reveal aria-labelledby="sc-08-title">
+    <div class="wrap showcase-entry__grid">
+      <div>
+        <p class="showcase-entry__tag">Project 08 — Machine Learning / Deep Learning</p>
+        <h2 id="sc-08-title">Sales / Demand Forecasting</h2>
+        <p class="showcase-entry__desc">Prophet vs. XGBoost on Rossmann store sales, extended with LSTM anomaly detection and sentiment analysis.</p>
+        <div class="showcase-spec">
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Stack</span><span class="showcase-spec__val">Prophet, XGBoost, PyTorch</span></div>
+          <div class="showcase-spec__row"><span class="showcase-spec__key">Result</span><span class="showcase-spec__val">RMSE 314 (XGBoost) vs 403 (Prophet)</span></div>
+        </div>
+        <a class="showcase-entry__cta" href="https://sales-forecasting-project-espba4qtsytr6h4sjctpzr.streamlit.app" target="_blank" rel="noopener">Open live demo →</a>
+      </div>
+      <div class="showcase-entry__visual" role="img" aria-label="Bar comparison of forecasting RMSE: Prophet 403 versus XGBoost 314, XGBoost lower and better">
+        <svg viewBox="0 0 120 120" fill="none" stroke="none">
+          <line x1="10" y1="108" x2="110" y2="108" stroke="currentColor" stroke-width="3"/>
+          <rect x="28" y="26" width="28" height="82" fill="currentColor" opacity="0.4"/>
+          <rect x="64" y="45.2" width="28" height="62.8" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase-explainer wrap">
+    <p>Every project here follows the same rule: it doesn't stop at a trained model in a notebook. Each one ends behind something you can actually open — a live API, a Streamlit app, a deployed static site — and where a real metric exists, it's shown as-is, not rounded up.</p>
+    <div class="showcase-stats">
+      <div class="stat">
+        <span class="stat__ring-row">
+          <svg class="stat__ring" viewBox="0 0 32 32" aria-hidden="true"><circle class="stat__ring-track" cx="16" cy="16" r="13"/><circle class="stat__ring-fill" data-ring cx="16" cy="16" r="13"/></svg>
+          <span class="stat__num" data-countup="8">0</span>
+        </span>
+        <span class="stat__label">Projects shipped</span>
+      </div>
+      <div class="stat">
+        <span class="stat__ring-row">
+          <svg class="stat__ring" viewBox="0 0 32 32" aria-hidden="true"><circle class="stat__ring-track" cx="16" cy="16" r="13"/><circle class="stat__ring-fill" data-ring cx="16" cy="16" r="13"/></svg>
+          <span class="stat__num" data-countup="4">0</span>
+        </span>
+        <span class="stat__label">With published metrics</span>
+      </div>
+      <div class="stat">
+        <span class="stat__ring-row">
+          <svg class="stat__ring" viewBox="0 0 32 32" aria-hidden="true"><circle class="stat__ring-track" cx="16" cy="16" r="13"/><circle class="stat__ring-fill" data-ring cx="16" cy="16" r="13"/></svg>
+          <span class="stat__num" data-countup="2026">0</span>
+        </span>
+        <span class="stat__label">Bachelor of Data Science</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase-faq wrap" aria-labelledby="faq-title">
+    <h2 id="faq-title" class="visually-hidden">Frequently asked questions</h2>
+    <div class="showcase-faq__item">
+      <p class="showcase-faq__q">Are these actually live?</p>
+      <p class="showcase-faq__a">Five of the eight have a working live demo linked above (SmokeGuard, Excel-to-Dashboard, Customer Intelligence, PK Job Tracker, Sales Forecasting). The other three ship as open-source code you can run yourself — linked from each case study.</p>
+    </div>
+    <div class="showcase-faq__item">
+      <p class="showcase-faq__q">Can I see the code?</p>
+      <p class="showcase-faq__a">Yes — every project links to its GitHub repo from its case study page, and from <a href="https://github.com/Faizan4356" target="_blank" rel="noopener" style="color:var(--accent-text)">github.com/Faizan4356</a> directly.</p>
+    </div>
+    <div class="showcase-faq__item">
+      <p class="showcase-faq__q">What's next?</p>
+      <p class="showcase-faq__a">An entry-level data science or ML engineering role where shipping matters as much as modeling — see the <a href="about.html" style="color:var(--accent-text)">about page</a> for more, or reach out via the <a href="contact.html" style="color:var(--accent-text)">contact page</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <canvas class="footer-bg-canvas" data-footer-canvas aria-hidden="true"></canvas>
+  <div class="wrap footer-inner">
+    <span>© 2026 Muhammad Faizan — built with hand-written CSS, GSAP &amp; Three.js<br><span class="footer-updated">last deployed 2026-09-07</span></span>
+    <div class="footer-links">
+      <a href="https://github.com/Faizan4356" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/muhammad-faizan-544b72305/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:mf5768194@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="assets/js/github.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
