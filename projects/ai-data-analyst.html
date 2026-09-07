@@ -96,19 +96,19 @@
       </div>
 
       <div class="pbp-grid" id="case-study">
-        <div class="pbp-card">
+        <div class="pbp-card" data-reveal>
           <span class="pbp-card__label">Problem</span>
           <p>Letting an LLM compute numbers directly on tabular data is unreliable — it hallucinates values instead of actually running the math.</p>
         </div>
-        <div class="pbp-card">
+        <div class="pbp-card" data-reveal>
           <span class="pbp-card__label">Approach</span>
           <p>Split the system into an LLM-as-planner stage that only decides *what* operation to run, and a deterministic Pandas/DuckDB/scikit-learn executor that actually computes it — covering forecasting, anomaly detection, segmentation, cohort retention and A/B testing.</p>
         </div>
-        <div class="pbp-card">
+        <div class="pbp-card" data-reveal>
           <span class="pbp-card__label">Result</span>
           <p>A Streamlit app where every number shown is traceable to a real computation, not a language-model guess — with an optional FastAPI layer for programmatic access.</p>
         </div>
-        <div class="pbp-card pbp-card--retro">
+        <div class="pbp-card pbp-card--retro" data-reveal>
           <span class="pbp-card__label">What I'd do differently</span>
           <p>Add a regression-test suite over the planner's generated operations — right now a wrong plan can fail silently instead of surfacing a clear, catchable error.</p>
         </div>

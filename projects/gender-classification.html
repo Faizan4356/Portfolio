@@ -84,35 +84,29 @@
         <a class="btn btn--ghost" data-magnetic href="https://github.com/Faizan4356/Gender-Classification" target="_blank" rel="noopener">View code</a>
       </div>
 
-      <div class="project-shot center">
-        <!-- illustrative confusion-matrix shape: no reported per-class accuracy
-             numbers in the README, so diagonal cells are only highlighted
-             directionally (correct-prediction concept), no numeral shown -->
-        <div class="sig-icon" data-reveal style="width:180px;height:180px;margin:0 auto;color:var(--accent)" role="img" aria-label="Illustrative confusion-matrix grid for the male/female classifier">
-          <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2">
-            <rect class="mini-chart__cell is-strong" x="10" y="10" width="47" height="47"/>
-            <rect class="mini-chart__cell" x="63" y="10" width="47" height="47"/>
-            <rect class="mini-chart__cell" x="10" y="63" width="47" height="47"/>
-            <rect class="mini-chart__cell is-strong" x="63" y="63" width="47" height="47"/>
-          </svg>
-        </div>
-        <span class="mini-chart__metric is-illustrative center" style="display:block">predicted vs. actual</span>
+      <div class="project-shot center" style="padding:var(--space-5) var(--space-4)">
+        <!-- real metrics (source: assets/resume.pdf), shown plain per the
+             site's restraint pass — previously shown as an illustrative
+             confusion-matrix shape since the README alone didn't report a
+             number; the CV does -->
+        <p class="mono" data-reveal style="font-size:clamp(3rem,9vw,5.2rem);font-weight:700;line-height:1">95.7%</p>
+        <p class="mono text-muted" style="margin-top:0.5rem">precision · 92.8% mAP50</p>
       </div>
 
       <div class="pbp-grid" id="case-study">
-        <div class="pbp-card">
+        <div class="pbp-card" data-reveal>
           <span class="pbp-card__label">Problem</span>
           <p>Attaching demographic classification to raw video/image feeds requires two distinct steps — finding people, then classifying each one — that most tutorials skip past.</p>
         </div>
-        <div class="pbp-card">
+        <div class="pbp-card" data-reveal>
           <span class="pbp-card__label">Approach</span>
           <p>Used YOLOv8 to localize people, cropped each detection, and ran it through a fine-tuned EfficientNetB0 classifier, with OpenCV/Pillow gluing the pipeline together into a single Streamlit demo.</p>
         </div>
-        <div class="pbp-card">
+        <div class="pbp-card" data-reveal>
           <span class="pbp-card__label">Result</span>
-          <p>A live-inference frontend that draws boxes and gender labels over uploaded images or webcam frames in real time.</p>
+          <p>A live-inference frontend drawing boxes and gender labels in real time. The YOLOv8 detector reached 95.7% precision and 92.8% mAP50.</p>
         </div>
-        <div class="pbp-card pbp-card--retro">
+        <div class="pbp-card pbp-card--retro" data-reveal>
           <span class="pbp-card__label">What I'd do differently</span>
           <p>Retrain the classifier on a more demographically balanced dataset — the source data skews toward a narrower age and ethnicity range than the real-world traffic it would see.</p>
         </div>

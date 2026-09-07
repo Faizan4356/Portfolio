@@ -95,19 +95,19 @@
       </div>
 
       <div class="pbp-grid" id="case-study">
-        <div class="pbp-card">
+        <div class="pbp-card" data-reveal>
           <span class="pbp-card__label">Problem</span>
           <p>Virtual try-on demos usually stop at a flat 2D composite — there's no easy path from that image to something viewable as a 3D asset in a browser.</p>
         </div>
-        <div class="pbp-card">
+        <div class="pbp-card" data-reveal>
           <span class="pbp-card__label">Approach</span>
           <p>Chained an IDM-VTON-based 2D try-on adapter with a model-agnostic FastAPI endpoint that accepts a saved output, uploaded image, or base64/path input, then submits it to the Hi3D cloud API and polls an async job to download the resulting GLB.</p>
         </div>
-        <div class="pbp-card">
+        <div class="pbp-card" data-reveal>
           <span class="pbp-card__label">Result</span>
           <p>A React + Vite flow — upload, preview, generate, view — that produces a downloadable 3D avatar with no local GPU or model weights required in the default cloud-backed mode.</p>
         </div>
-        <div class="pbp-card pbp-card--retro">
+        <div class="pbp-card pbp-card--retro" data-reveal>
           <span class="pbp-card__label">What I'd do differently</span>
           <p>Add a local fallback path for the 3D conversion step — the pipeline is currently fully dependent on the third-party Hi3D API being reachable, with no offline degradation.</p>
         </div>

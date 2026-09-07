@@ -99,19 +99,19 @@
       </div>
 
       <div class="pbp-grid" id="case-study">
-        <div class="pbp-card">
+        <div class="pbp-card" data-reveal>
           <span class="pbp-card__label">Problem</span>
           <p>Government job ads are published as scanned PDFs across multiple sites, so eligibility criteria are effectively unsearchable without manually opening every advertisement.</p>
         </div>
-        <div class="pbp-card">
+        <div class="pbp-card" data-reveal>
           <span class="pbp-card__label">Approach</span>
           <p>A robots.txt-respecting daily scraper pulls listings; a separate, rate-limited PDF backfill step feeds ads through Gemini vision to extract structured eligibility; two independent match signals — a deterministic rule-based match and a semantic-similarity fuzzy score via sentence-transformers — surface relevant jobs.</p>
         </div>
-        <div class="pbp-card">
+        <div class="pbp-card" data-reveal>
           <span class="pbp-card__label">Result</span>
           <p>A Streamlit dashboard with an 8-category degree classification schema (Matric → PhD, plus Professional/Specialist), refreshed daily via GitHub Actions.</p>
         </div>
-        <div class="pbp-card pbp-card--retro">
+        <div class="pbp-card pbp-card--retro" data-reveal>
           <span class="pbp-card__label">What I'd do differently</span>
           <p>Add a manual-correction feedback loop for the Gemini-extracted eligibility fields — vision-model extraction from scanned PDFs still needs occasional human review before I'd trust it unsupervised.</p>
         </div>
