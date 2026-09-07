@@ -54,21 +54,47 @@
   <section class="section contact-hero" data-signal-marker aria-labelledby="contact-title">
     <div class="wrap">
       <p class="eyebrow center" style="justify-content:center">Let's talk</p>
-      <h1 id="contact-title">Open to ML/data<br>collaboration.</h1>
-      <p class="hero__lede center" style="margin:1.4rem auto 0">Whether it's a project, a role, or a question about one of the case studies — email is the fastest way to reach me.</p>
+      <h1 id="contact-title">Open to ML/data collaboration<br>and good conversations about data.</h1>
+      <p class="hero__lede center" style="margin:1.2rem auto 0">Whether it's a project, a role, or just a question about one of the case studies — reach out any of these ways.</p>
     </div>
   </section>
 
   <section class="section" style="padding-top:0" data-signal-marker aria-labelledby="connect-title">
-    <div class="wrap center">
+    <div class="wrap">
       <h2 id="connect-title" class="visually-hidden">Contact methods</h2>
-      <p style="font-family:var(--font-display);font-size:clamp(1.8rem,4.5vw,2.8rem);line-height:1.4" data-reveal>
-        <a href="mailto:mf5768194@gmail.com" style="border-bottom:2px solid var(--accent)">mf5768194@gmail.com</a><br>
-        <a href="https://www.linkedin.com/in/muhammad-faizan-544b72305/" target="_blank" rel="noopener" style="border-bottom:2px solid transparent">LinkedIn</a>
-        &nbsp;·&nbsp;
-        <a href="https://github.com/Faizan4356" target="_blank" rel="noopener" style="border-bottom:2px solid transparent">GitHub</a>
-      </p>
-      <p class="mono text-muted" style="margin-top:var(--space-4);font-size:0.85rem" data-reveal>Based in Pakistan · usually replies within a day or two</p>
+      <div class="connect-grid">
+        <a class="connect-card" href="mailto:mf5768194@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
+          <span><span class="connect-card__label">Email</span><span class="connect-card__value">mf5768194@gmail.com</span></span>
+        </a>
+        <a class="connect-card" href="https://www.linkedin.com/in/muhammad-faizan-544b72305/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.7A1.7 1.7 0 118.2 7a1.7 1.7 0 01-1.7 1.7zM19 19h-3v-4.7c0-1.1 0-2.6-1.6-2.6s-1.8 1.2-1.8 2.5V19h-3v-9h2.9v1.3a3.1 3.1 0 012.8-1.5c3 0 3.6 2 3.6 4.5z"/></svg>
+          <span><span class="connect-card__label">LinkedIn</span><span class="connect-card__value">muhammad-faizan</span></span>
+        </a>
+        <a class="connect-card" href="https://github.com/Faizan4356" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.3-3.2-.1-.3-.6-1.6.1-3.3 0 0 1-.3 3.4 1.2a11.5 11.5 0 016 0c2.3-1.6 3.4-1.2 3.4-1.2.7 1.7.2 3 .1 3.3.8.8 1.3 1.9 1.3 3.2 0 4.6-2.7 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0012 .3z"/></svg>
+          <span><span class="connect-card__label">GitHub</span><span class="connect-card__value">Faizan4356</span></span>
+        </a>
+      </div>
+
+      <form class="terminal" style="margin-top:var(--space-5);max-width:640px" action="mailto:mf5768194@gmail.com" method="post" enctype="text/plain">
+        <div class="terminal__bar">
+          <span class="terminal__dot" aria-hidden="true"></span><span class="terminal__dot" aria-hidden="true"></span><span class="terminal__dot" aria-hidden="true"></span>
+          <span class="terminal__title">new_message.sh</span>
+        </div>
+        <div class="terminal__body" style="display:flex;flex-direction:column;gap:1rem">
+          <label class="mono" for="name" style="font-size:.8rem;color:var(--text-muted)">name
+            <input id="name" name="name" type="text" required style="width:100%;margin-top:.4rem;background:var(--bg-alt);border:1px solid var(--border);border-radius:6px;padding:.6rem .7rem;color:var(--text);font-family:var(--font-mono)">
+          </label>
+          <label class="mono" for="email" style="font-size:.8rem;color:var(--text-muted)">email
+            <input id="email" name="email" type="email" required style="width:100%;margin-top:.4rem;background:var(--bg-alt);border:1px solid var(--border);border-radius:6px;padding:.6rem .7rem;color:var(--text);font-family:var(--font-mono)">
+          </label>
+          <label class="mono" for="message" style="font-size:.8rem;color:var(--text-muted)">message
+            <textarea id="message" name="message" rows="4" required style="width:100%;margin-top:.4rem;background:var(--bg-alt);border:1px solid var(--border);border-radius:6px;padding:.6rem .7rem;color:var(--text);font-family:var(--font-mono);resize:vertical"></textarea>
+          </label>
+          <button class="btn btn--primary" type="submit" data-magnetic style="align-self:flex-start">Send message</button>
+        </div>
+      </form>
     </div>
   </section>
 </main>

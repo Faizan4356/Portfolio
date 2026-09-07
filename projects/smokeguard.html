@@ -101,19 +101,19 @@
       </div>
 
       <div class="pbp-grid" id="case-study">
-        <div class="pbp-card" data-reveal>
+        <div class="pbp-card">
           <span class="pbp-card__label">Problem</span>
           <p>Manually reviewing surveillance footage for smoking violations in restricted areas doesn't scale, and generic object detectors aren't trained to recognize a lit cigarette or the act of smoking specifically.</p>
         </div>
-        <div class="pbp-card" data-reveal>
+        <div class="pbp-card">
           <span class="pbp-card__label">Approach</span>
           <p>Curated and labeled a custom dataset, fine-tuned YOLOv8n for cigarette/smoking detection, wrapped inference in a FastAPI service with OpenCV pre/post-processing, and built a React dashboard for live and batch review.</p>
         </div>
-        <div class="pbp-card" data-reveal>
+        <div class="pbp-card">
           <span class="pbp-card__label">Result</span>
           <p>A deployed REST API plus dashboard that flags smoking events in uploaded images and video in real time, usable as a drop-in moderation or compliance signal.</p>
         </div>
-        <div class="pbp-card pbp-card--retro" data-reveal>
+        <div class="pbp-card pbp-card--retro">
           <span class="pbp-card__label">What I'd do differently</span>
           <p>Add hard-negative mining for ambiguous cases — vaping, an unlit cigarette held near the mouth — since the model was trained on a fairly narrow custom set and likely overfits to it.</p>
         </div>

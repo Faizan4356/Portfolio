@@ -155,15 +155,12 @@
         var bx = b.x + parX * (0.4 + i * 0.15);
         var by = b.y + parY * (0.4 + i * 0.15) + scrollY * 0.2;
         var grad = ctx.createRadialGradient(bx, by, 0, bx, by, b.r);
-        /* dialed back further for the monochrome-primary restyle — type and
-           whitespace carry the visual weight now, so this sits further
-           back in contrast than before (was 0.10/0.06 galaxy, 0.07 datasheet) */
         if (galaxy) {
-          grad.addColorStop(0, hexToRgba(colors.accent, 0.06 * pulse * moodMultiplier));
-          grad.addColorStop(0.55, hexToRgba(colors.accent2, 0.035 * pulse * moodMultiplier));
+          grad.addColorStop(0, hexToRgba(colors.accent, 0.10 * pulse * moodMultiplier));
+          grad.addColorStop(0.55, hexToRgba(colors.accent2, 0.06 * pulse * moodMultiplier));
           grad.addColorStop(1, hexToRgba(colors.accent2, 0));
         } else {
-          grad.addColorStop(0, hexToRgba(colors.accent, 0.04 * pulse * moodMultiplier));
+          grad.addColorStop(0, hexToRgba(colors.accent, 0.07 * pulse * moodMultiplier));
           grad.addColorStop(1, hexToRgba(colors.accent, 0));
         }
         ctx.fillStyle = grad;
@@ -219,7 +216,7 @@
             var dx = scatter[a].x - scatter[b].x, dy = scatter[a].y - scatter[b].y;
             var dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < SCATTER_CONNECT_DIST) {
-              var base = galaxy ? 0.035 : 0.022;
+              var base = galaxy ? 0.05 : 0.035;
               ctx.globalAlpha = base * (1 - dist / SCATTER_CONNECT_DIST) * moodMultiplier;
               ctx.beginPath();
               ctx.moveTo(scatter[a].x + offX, scatter[a].y + offY);
@@ -238,7 +235,7 @@
       ctx.fillStyle = galaxy && isDarkTheme() ? "#ffffff" : colors.accent;
       scatter.forEach(function (n, i) {
         var twinkle = galaxy ? 0.5 + 0.5 * Math.sin(t * 0.002 + n.twinkle) : 1;
-        ctx.globalAlpha = (galaxy ? 0.28 : 0.032) * twinkle * (0.6 + signal * 0.4) * moodMultiplier;
+        ctx.globalAlpha = (galaxy ? 0.35 : 0.05) * twinkle * (0.6 + signal * 0.4) * moodMultiplier;
         ctx.beginPath();
         ctx.arc(n.x + offX, n.y + offY, n.size, 0, Math.PI * 2);
         ctx.fill();
@@ -268,7 +265,7 @@
       var bandTop = h * 0.58, bandH = h * 0.34;
       ctx.beginPath();
       ctx.strokeStyle = colors.accent;
-      ctx.globalAlpha = 0.055 * moodMultiplier;
+      ctx.globalAlpha = 0.09 * moodMultiplier;
       ctx.lineWidth = 1.75;
       series.forEach(function (v, i) {
         var x = (i / (POINT_COUNT - 1)) * w;

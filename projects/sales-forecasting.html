@@ -86,26 +86,33 @@
         <a class="btn btn--ghost" data-magnetic href="https://github.com/Faizan4356/sales-forecasting-project" target="_blank" rel="noopener">View code</a>
       </div>
 
-      <div class="project-shot center" style="padding:var(--space-5) var(--space-4)">
-        <!-- real metric, shown plain per the site's restraint pass -->
-        <p class="mono" data-reveal style="font-size:clamp(4rem,12vw,7rem);font-weight:700;line-height:1">314</p>
-        <p class="mono text-muted" style="margin-top:0.5rem">RMSE (XGBoost) · Prophet scored 403</p>
+      <div class="project-shot center">
+        <!-- real metric: Prophet RMSE 403 vs XGBoost RMSE 314, bar heights
+             proportional to the actual reported values -->
+        <div class="sig-icon" data-reveal style="width:180px;height:180px;margin:0 auto;color:var(--accent)" role="img" aria-label="Bar comparison of forecasting RMSE: Prophet 403 versus XGBoost 314, XGBoost lower and better">
+          <svg viewBox="0 0 120 120" fill="none" stroke="none">
+            <line x1="10" y1="108" x2="110" y2="108" stroke="currentColor" stroke-width="3"/>
+            <rect class="mini-chart__bar" x="28" y="26" width="28" height="82" fill="currentColor" opacity="0.5"/>
+            <rect class="mini-chart__bar" x="64" y="45.2" width="28" height="62.8" fill="var(--accent)" style="transition-delay:150ms"/>
+          </svg>
+        </div>
+        <span class="mini-chart__metric center" style="display:block">Prophet <strong>403</strong> vs XGBoost <strong>314</strong> RMSE</span>
       </div>
 
       <div class="pbp-grid" id="case-study">
-        <div class="pbp-card" data-reveal>
+        <div class="pbp-card">
           <span class="pbp-card__label">Problem</span>
           <p>Retail planning needs a store-level daily sales forecast that's both accurate and honest about its uncertainty — a single point estimate isn't enough for inventory decisions.</p>
         </div>
-        <div class="pbp-card" data-reveal>
+        <div class="pbp-card">
           <span class="pbp-card__label">Approach</span>
           <p>Benchmarked Prophet against XGBoost on the Rossmann dataset (XGBoost won, RMSE 314 vs. 403), added an 80% prediction interval via quantile regression, then layered in a PyTorch LSTM autoencoder for anomaly detection and a HuggingFace sentiment pipeline over synthetic reviews.</p>
         </div>
-        <div class="pbp-card" data-reveal>
+        <div class="pbp-card">
           <span class="pbp-card__label">Result</span>
           <p>A 5-tab Streamlit + Plotly app (Forecast, Upload Your Own Data, Store Health, What-If Simulator, Portfolio Overview) with a precomputed all-1,115-store view and an automated weekly Markdown alert report.</p>
         </div>
-        <div class="pbp-card pbp-card--retro" data-reveal>
+        <div class="pbp-card pbp-card--retro">
           <span class="pbp-card__label">What I'd do differently</span>
           <p>Backtest across multiple seasons rather than a single train/test split — one holiday period isn't enough to validate a retail forecaster against a full seasonal cycle.</p>
         </div>

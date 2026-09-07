@@ -86,27 +86,32 @@
         <a class="btn btn--ghost" data-magnetic href="https://github.com/Faizan4356/churn-prediction-app" target="_blank" rel="noopener">View code</a>
       </div>
 
-      <div class="project-shot center" style="padding:var(--space-5) var(--space-4)">
-        <!-- real metric, shown plain per the site's restraint pass: a chart
-             adds nothing a single confident numeral doesn't already say -->
-        <p class="mono" data-reveal style="font-size:clamp(4rem,12vw,7rem);font-weight:700;line-height:1">0.839</p>
-        <p class="mono text-muted" style="margin-top:0.5rem">AUC · optimized for recall on the churn class</p>
+      <div class="project-shot center">
+        <!-- real metric: churn model AUC 0.839, gauge fill animates to that
+             exact fraction of the ring (see churn-prediction-app README) -->
+        <div class="sig-icon" data-reveal style="width:180px;height:180px;margin:0 auto;color:var(--accent)" role="img" aria-label="Radial gauge showing the churn model's AUC of 0.839">
+          <svg viewBox="0 0 120 120" style="transform:rotate(-90deg)">
+            <circle class="mini-chart__gauge-track" cx="60" cy="60" r="44"/>
+            <circle class="mini-chart__gauge-fill gauge--auc839 mini-chart__gauge-fill--r44" cx="60" cy="60" r="44"/>
+          </svg>
+        </div>
+        <span class="mini-chart__metric center" style="display:block">AUC <strong>0.839</strong> · optimized for recall on churn class</span>
       </div>
 
       <div class="pbp-grid" id="case-study">
-        <div class="pbp-card" data-reveal>
+        <div class="pbp-card">
           <span class="pbp-card__label">Problem</span>
           <p>A single churn probability doesn't tell a customer success team *why* an account is at risk, or what's changed recently in behavior and sentiment.</p>
         </div>
-        <div class="pbp-card" data-reveal>
+        <div class="pbp-card">
           <span class="pbp-card__label">Approach</span>
           <p>Layered three models — an XGBoost churn classifier trained on real Telco data and optimized for recall, a PyTorch LSTM reading usage-trend sequences, and a pretrained DistilBERT sentiment scorer — then combined them into one interpretable Health Score with SHAP explanations.</p>
         </div>
-        <div class="pbp-card" data-reveal>
+        <div class="pbp-card">
           <span class="pbp-card__label">Result</span>
           <p>A 4-tab Streamlit app (Single Prediction, Search Existing Customer, What-If Simulator, Batch Upload) that's explicit about which parts are real data (churn) vs. synthetic-but-correlated (usage/sentiment).</p>
         </div>
-        <div class="pbp-card pbp-card--retro" data-reveal>
+        <div class="pbp-card pbp-card--retro">
           <span class="pbp-card__label">What I'd do differently</span>
           <p>Give the LSTM usage-trend model a proper held-out time window instead of a random split — usage data is inherently sequential, and a random split lets future information leak into training.</p>
         </div>
