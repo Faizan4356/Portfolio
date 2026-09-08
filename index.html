@@ -111,9 +111,9 @@
         <div class="stat">
           <span class="stat__ring-row">
             <svg class="stat__ring" viewBox="0 0 32 32" aria-hidden="true"><circle class="stat__ring-track" cx="16" cy="16" r="13"/><circle class="stat__ring-fill" data-ring cx="16" cy="16" r="13"/></svg>
-            <span class="stat__num" data-countup="8">0</span>
+            <span class="stat__num" data-countup="8">0</span><span class="stat__num">+</span>
           </span>
-          <span class="stat__label">Shipped projects</span>
+          <span class="stat__label">Projects shipped</span>
         </div>
         <div class="stat">
           <span class="stat__ring-row">
@@ -125,14 +125,25 @@
         <div class="stat">
           <span class="stat__ring-row">
             <svg class="stat__ring" viewBox="0 0 32 32" aria-hidden="true"><circle class="stat__ring-track" cx="16" cy="16" r="13"/><circle class="stat__ring-fill" data-ring cx="16" cy="16" r="13"/></svg>
-            <span class="stat__num" data-countup="4">0</span>
+            <span class="stat__num" data-countup="4">0</span><span class="stat__num">+</span>
           </span>
           <span class="stat__label">Job simulations</span>
         </div>
       </div>
       <div class="hero__cta btn-row" style="justify-content:center">
-        <a class="btn btn--primary" data-magnetic href="projects/index.html">View projects</a>
-        <a class="btn btn--ghost" data-magnetic href="about.html">About me</a>
+        <a class="btn btn--primary" data-magnetic href="contact.html">Get in touch</a>
+        <a class="btn btn--ghost" data-magnetic href="assets/resume.pdf" target="_blank" rel="noopener">Download résumé ↓</a>
+      </div>
+      <div class="hero__social" style="display:flex;gap:1rem;justify-content:center;margin-top:var(--space-3)">
+        <a href="https://github.com/Faizan4356" target="_blank" rel="noopener" aria-label="GitHub" class="hero__social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.3-3.2-.1-.3-.6-1.6.1-3.3 0 0 1-.3 3.4 1.2a11.5 11.5 0 016 0c2.3-1.6 3.4-1.2 3.4-1.2.7 1.7.2 3 .1 3.3.8.8 1.3 1.9 1.3 3.2 0 4.6-2.7 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0012 .3z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/muhammad-faizan-544b72305/" target="_blank" rel="noopener" aria-label="LinkedIn" class="hero__social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.7A1.7 1.7 0 118.2 7a1.7 1.7 0 01-1.7 1.7zM19 19h-3v-4.7c0-1.1 0-2.6-1.6-2.6s-1.8 1.2-1.8 2.5V19h-3v-9h2.9v1.3a3.1 3.1 0 012.8-1.5c3 0 3.6 2 3.6 4.5z"/></svg>
+        </a>
+        <a href="mailto:mf5768194@gmail.com" aria-label="Email" class="hero__social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
+        </a>
       </div>
       <div class="gh-chip mono" data-gh-chip role="status" aria-live="polite">
         <span class="gh-chip__dot" aria-hidden="true"></span>
@@ -192,6 +203,7 @@
       <div class="bento">
 
         <a class="card card--span-4 card--link-wrap" href="projects/smokeguard.html" data-tech="cv">
+          <span class="status-badge is-live">Live demo</span>
           <!-- illustrative precision/recall shape — no reported metric in the README -->
           <div class="card__icon sig-icon" data-reveal aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -210,6 +222,7 @@
         </a>
 
         <a class="card card--span-2 card--link-wrap" href="projects/ai-data-analyst.html" data-tech="nlp">
+          <span class="status-badge">Code released</span>
           <div class="card__icon sig-icon" data-reveal aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="8" cy="10" r="3"/><circle cx="36" cy="8" r="3"/><circle cx="36" cy="34" r="3"/><circle cx="10" cy="34" r="3"/>
@@ -224,6 +237,7 @@
         </a>
 
         <a class="card card--span-2 card--link-wrap" href="projects/customer-intelligence.html" data-tech="ml">
+          <span class="status-badge is-live">Live demo</span>
           <!-- real metric: churn model AUC 0.839 (see churn-prediction-app README) -->
           <div class="card__icon sig-icon" data-reveal aria-hidden="true">
             <svg viewBox="0 0 44 44" style="transform:rotate(-90deg)">
@@ -240,6 +254,7 @@
         </a>
 
         <a class="card card--span-2 card--link-wrap" href="projects/sales-forecasting.html" data-tech="ml">
+          <span class="status-badge is-live">Live demo</span>
           <!-- real metric: Prophet RMSE 403 vs XGBoost RMSE 314 -->
           <div class="card__icon sig-icon" data-reveal aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="none">
@@ -257,6 +272,7 @@
         </a>
 
         <a class="card card--span-4 card--link-wrap" href="projects/3d-styleforge.html" data-tech="3d,cv">
+          <span class="status-badge">Code released</span>
           <div class="card__icon sig-icon" data-reveal aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 4l16 9v18l-16 9-16-9V13z"/><path d="M6 13l16 9 16-9M22 22v18"/>

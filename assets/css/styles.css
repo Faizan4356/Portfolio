@@ -530,6 +530,15 @@ main { display: block; position: relative; z-index: 1; }
 .stat__num { font-size: 1.6rem; color: var(--accent-text); font-weight: 700; }
 .stat__label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
 .hero__cta { margin-top: var(--space-4); }
+.hero__social-link {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s var(--ease);
+}
+.hero__social-link:hover { border-color: var(--accent); color: var(--accent-text); transform: translateY(-2px); }
 
 /* photo card with tilt */
 .photo-card {
@@ -653,6 +662,29 @@ main { display: block; position: relative; z-index: 1; }
   position: relative;
   overflow: hidden;
   transition: transform 0.3s var(--ease), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.status-badge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--card-bg) 80%, transparent);
+}
+.status-badge.is-live { border-color: var(--accent); color: var(--accent-text); }
+.status-badge.is-live::before {
+  content: "";
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 0.35rem;
 }
 .card:hover { border-color: var(--border-strong); box-shadow: var(--shadow); }
 /* mouse-hover tilt is applied inline by initCardTilt() in main.js; this
@@ -817,6 +849,11 @@ main { display: block; position: relative; z-index: 1; }
 }
 .radar-shape.is-visible { stroke-dashoffset: 0; }
 
+.skill-group { padding: var(--space-2) 0; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+.skill-group:last-child { border-bottom: 1px solid var(--border); }
+.skill-group__label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); min-width: 11rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.skill-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
 .bars { display: flex; flex-direction: column; gap: var(--space-3); }
 .bar-row__head { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.8rem; margin-bottom: 0.4rem; }
 .bar-row__track { height: 8px; border-radius: 999px; background: var(--bg-alt); border: 1px solid var(--border); overflow: hidden; }
@@ -945,6 +982,33 @@ main { display: block; position: relative; z-index: 1; }
 .timeline__title { font-weight: 600; margin-top: 0.3rem; }
 .timeline__body { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem; }
 .stats3d-canvas { width: 100%; height: 320px; border: 1px solid var(--border); border-radius: var(--radius-m); background: var(--card-bg); }
+
+/* ---- credential cards (about page) ------------------------------------- */
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+.cred-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  padding: var(--space-3);
+  transition: border-color 0.2s ease, transform 0.2s var(--ease);
+}
+.cred-card:hover { border-color: var(--border-strong); transform: translateY(-3px); }
+.cred-card__issuer {
+  display: inline-block;
+  font-size: 0.68rem;
+  color: var(--accent-text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.cred-card__title { font-size: 1.02rem; margin-top: 0.7rem; font-weight: 600; }
+.cred-card__meta { color: var(--text-muted); font-size: 0.78rem; margin-top: 0.5rem; }
 
 /* ---- contact ------------------------------------------------------------*/
 .contact-hero { padding-top: var(--space-6); text-align: center; }
